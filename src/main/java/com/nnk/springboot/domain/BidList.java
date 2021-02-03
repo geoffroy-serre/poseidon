@@ -12,33 +12,31 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "bidlist")
+@Table(name = "bid_list")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class BidList {
-  // TODO: Map columns in data table BIDLIST with corresponding java fields
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "BidListId")
-  private Integer BidListId;
+  private Integer id;
 
   @Column(name = "account")
-  @NotBlank(message="Account can't be empty")
+  @NotBlank(message="Account is mandatory")
   @Size(max = 30)
   private String account;
 
   @Column(name = "type")
   @Size(max = 30)
-  @NotBlank(message="Type can't be empty")
+  @NotBlank(message="Type is mandatory")
   private String type;
 
-  @Column(name = "bidQuantity")
+  @Column(name = "bid_quantity")
   private Double bidQuantity;
 
-  @Column(name = "askQuantity")
+  @Column(name = "ask_quantity")
   private Double askQuantity;
 
   @Column(name = "bid")
@@ -51,7 +49,7 @@ public class BidList {
   @Size(max = 125)
   private String benchmark;
 
-  @Column(name = "bidListDate")
+  @Column(name = "bid_list_date")
   @DateTimeFormat(pattern = "MM/dd/yyyy")
   private Timestamp bidListDate;
 
@@ -75,31 +73,31 @@ public class BidList {
   @Size(max = 125)
   private String book;
 
-  @Column(name = "creationName")
+  @Column(name = "creation_name")
   @Size(max = 125)
   private String creationName;
 
-  @Column(name = "creationDate")
+  @Column(name = "creation_date")
   @DateTimeFormat(pattern = "MM/dd/yyyy")
   private Timestamp creationDate;
 
-  @Column(name = "revisionName")
+  @Column(name = "revision_name")
   @Size(max = 125)
   private String revisionName;
 
-  @Column(name = "revisionDate")
+  @Column(name = "revision_date")
   @DateTimeFormat(pattern = "MM/dd/yyyy")
   private Timestamp revisionDate;
 
-  @Column(name = "dealName")
+  @Column(name = "deal_name")
   @Size(max = 125)
   private String dealName;
 
-  @Column(name = "dealType")
+  @Column(name = "deal_type")
   @Size(max = 125)
   private String dealType;
 
-  @Column(name = "sourceListId")
+  @Column(name = "source_list_id")
   @Size(max = 125)
   private String sourceListId;
 

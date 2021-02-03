@@ -8,16 +8,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "rulename")
+@Table(name = "rule_name")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class RuleName {
-  // TODO: Map columns in data table RULENAME with corresponding java fields
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
+
   @Column(name = "name")
   @Size(max = 125)
   private String name;
@@ -34,11 +35,11 @@ public class RuleName {
   @Size(max = 512)
   private String template;
 
-  @Column(name = "sqlStr")
+  @Column(name = "sql_str")
   @Size(max = 125)
   private String sqlStr;
 
-  @Column(name = "sqlPart")
+  @Column(name = "sql_part")
   @Size(max = 125)
   private String sqlPart;
 

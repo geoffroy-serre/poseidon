@@ -11,23 +11,22 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "curvepoint")
+@Table(name = "curve_point")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CurvePoint {
-  // TODO: Map columns in data table CURVEPOINT with corresponding java fields
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  @Column(name = "CurveId")
+  @Column(name = "curve_id")
   @NotNull
   private Integer curveId;
 
-  @Column(name = "asOfDate")
+  @Column(name = "as_of_date")
   @DateTimeFormat(pattern = "MM/dd/yyyy")
   private Timestamp asOfDate;
 
@@ -37,7 +36,7 @@ public class CurvePoint {
   @Column(name = "value")
   private Double value;
 
-  @Column(name = "creationDate")
+  @Column(name = "creation_date")
   @DateTimeFormat(pattern = "MM/dd/yyyy")
   private Timestamp creationDate;
 

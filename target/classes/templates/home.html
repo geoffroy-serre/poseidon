@@ -1,13 +1,46 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title> Spring Boot </title>
-    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/styles.css">
+
 </head>
 <body>
-<h3> HOME PAGE </h3>
-<p>
-    <a href="/login">Login</a> or create one <a href="/user/list">User management</a>
-</p>
+<div class="container col-7 d-flex flex-column justify-content-center align-items-center vh-100">
+
+    <div class="container d-flex flex-column  justify-content-center align-items-center">
+        <h1>Log in Screen</h1>
+        <br><br>
+        <a href="/login">Login</a> or create one <a href="/user/list">User management</a><br>
+        <b>Login with Username and Password</b><br>
+    </div>
+    <div class="container row-cols-4  d-flex justify-content-center align-items-center ">
+        <form class="justify-content-center align-items-center ">
+
+            <div class="form-group row-1 justify-content-between ">
+                <label for="inputEmail3" class="col-form-label">User</label>
+                <div class="col-13 justify-content-start">
+                    <input type="text"
+                           class="form-control form-control-sm border justify-self-left "
+                           id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row-1 justify-content-between ">
+                <label for="inputPassword3" class="col-form-label">Password</label>
+                <div class="col-13 justify-content-start">
+                    <input type="password"
+                           class="form-control form-control-sm border justify-self-left "
+                           id="inputPassword3">
+                </div>
+            </div>
+            <div class="row form-group justify-content-center align-items-center ">
+                <div class="container row  justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

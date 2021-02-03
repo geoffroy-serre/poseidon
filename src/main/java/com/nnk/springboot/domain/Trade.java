@@ -18,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Trade {
-    // TODO: Map columns in data table TRADE with corresponding java fields
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tradeId;
@@ -31,23 +31,23 @@ public class Trade {
   @Size(max=30)
   private String type;
 
-  @Column(name = "buyQuantity")
+  @Column(name = "buy_quantity")
   private Double buyQuantity;
 
-  @Column(name = "sellQuantity")
+  @Column(name = "sell_quantity")
   private Double sellQuantity;
 
-  @Column(name = "buyPrice")
+  @Column(name = "buy_price")
   private Double buyPrice;
 
-  @Column(name = "sellPrice")
+  @Column(name = "sell_price")
   private Double sellPrice;
 
   @Column(name = "benchmark")
   @Size(max=125)
   private String benchmark;
 
-  @Column(name = "tradeDate")
+  @Column(name = "trade_date")
   @DateTimeFormat(pattern = "MM/dd/yyyy")
   private Timestamp tradeDate;
 
@@ -67,31 +67,31 @@ public class Trade {
   @Size(max=125)
   private String book;
 
-  @Column(name = "creationName")
+  @Column(name = "creation_name")
   @Size(max=125)
   private String creationName;
 
-  @Column(name = "creationDate")
+  @Column(name = "creation_date")
   @DateTimeFormat(pattern = "MM/dd/yyyy")
   private Timestamp creationDate;
 
-  @Column(name = "revisionName")
+  @Column(name = "revision_name")
   @Size(max=125)
   private String revisionName;
 
-  @Column(name = "revisionDate")
+  @Column(name = "revision_date")
   @DateTimeFormat(pattern = "MM/dd/yyyy")
   private  Timestamp revisionDate;
 
-  @Column(name = "dealName")
+  @Column(name = "deal_name")
   @Size(max=125)
   private String dealName;
 
-  @Column(name = "dealType")
+  @Column(name = "deal_type")
   @Size(max=125)
   private  String dealType;
 
-  @Column(name = "sourceListId")
+  @Column(name = "source_list_id")
   @Size(max=125)
   private String sourceListId;
 

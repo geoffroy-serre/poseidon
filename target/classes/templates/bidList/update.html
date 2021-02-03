@@ -1,25 +1,69 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="utf-8"/>
-<title>Home</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" >
-</head>
-<body>
-<div class="container">
-	<div class="row">
-		<h2>Update Bid</h2>
-	</div>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-	<div class="row">
-		<form action="#" th:action="@{/bidList/update/{id}(id=${bidList.bidListId})}" th:object="${bidList}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to edit the values of Bid, there are 2 buttons: Update data and Cancel to the list Bid
-			 -->
-		</form>
-	</div>
+<head>
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+
+</head>
+
+<body>
+<div class="container col-7 d-flex flex-column justify-content-center align-items-center vh-100 ">
+
+    <div class="container d-flex flex-column  justify-content-center align-items-center">
+        <h2>Add New Bid</h2>
+    </div>
+
+    <div class="container row-cols-4  d-flex justify-content-center align-items-center ">
+        <form action="#" th:action="@{/bidList/update/{id}(id=${bidList.id})}"
+              th:object="${bidList}"
+              method="post" class="justify-content-center align-items-center ">
+            <!--
+        TODO: Create a form to input the values of Bid, there are 2 buttons: Save data and Cancel to the list Bid
+         -->
+            <div class="form-group row-1 justify-content-between ">
+                <label for="account" class="col-form-label ">Account</label>
+                <div class="col-13 justify-content-start">
+                    <input type="text" th:field="*{account}" id="account" placeholder="Account"
+                           class="form-control form-control-sm border justify-self-left ">
+                    <p class="text-danger" th:if="${#fields.hasErrors('account')}"
+                       th:errors="*{account}"></p>
+                </div>
+            </div>
+            <div class="form-group row-1 justify-content-between">
+                <label for="type" class="col-form-label ">Type</label>
+                <div class="col-13 justify-content-end">
+                    <input type="text" id="type" th:field="*{type}" placeholder="Type"
+                           class="form-control form-control-sm border ">
+                    <p class="text-danger" th:if="${#fields.hasErrors('type')}"
+                       th:errors="*{type}"></p>
+                </div>
+            </div>
+            <div class="form-group row-1 justify-content-between">
+                <label for="bidQuantity" class="col-form-label ">Bid Quantity</label>
+                <div class="col-13 justify-content-end">
+                    <input type="number" step="0.1" th:field="*{bidQuantity}" id="bidQuantity"
+                           placeholder="Bid Quantity" class=" form-control form-control-sm border">
+                    <p class="text-danger" th:if="${#fields.hasErrors('bidQuantity')}"
+                       th:errors="*{bidQuantity}">
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group row  justify-content-center align-items-center">
+                <div class="row-cols-7 ">
+                    <a class="btn btn-danger btn-sm" href="/bidList/list">Cancel</a>
+                    <input class="btn btn-primary btn-sm" type="submit" value="Update BidList">
+                </div>
+            </div>
+
+
+        </form>
+    </div>
 
 </div>
 </body>
+
 </html>

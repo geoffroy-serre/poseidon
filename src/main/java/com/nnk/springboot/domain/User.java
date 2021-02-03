@@ -19,19 +19,20 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @NotBlank(message = "Username can't be empty")
+
     @Column(name ="username")
+    @NotBlank(message = "Username can't be empty")
     private String username;
 
-    @NotBlank(message = "Username can't be empty")
+    @NotBlank(message = "Password can't be empty")
     @Column(name ="password")
     private String password;
 
-    @NotBlank(message = "Username can't be empty")
+    @NotBlank(message = "Full Name can't be empty")
     @Column(name ="fullname")
     private String fullname;
 
-    @NotBlank(message = "Username can't be empty")
+    @NotBlank(message = "Role must be selected")
     @Column(name ="role")
     private String role;
 

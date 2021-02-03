@@ -17,25 +17,25 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Rating {
-    // TODO: Map columns in data table RATING with corresponding java fields
+
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  @Column(name = "moodysRating")
+  @Column(name = "moodys_rating")
   @Size(max = 125)
   private String moodysRating;
 
-  @Column(name = "sandPRating")
+  @Column(name = "sand_p_rating")
   @Size(max = 125)
   private String sandPRating;
 
-  @Column(name = "fitchRating")
+  @Column(name = "fitch_rating")
   @Size(max = 125)
   private String fitchRating;
 
-  @Column(name = "orderNumber")
+  @Column(name = "order_number")
   private Integer orderNumber;
 
   public Rating(String moodysRating, String sandPRating, String fitchRating, int orderNumber) {
