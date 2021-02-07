@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="utf-8"/>
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
+<div class="container" >
 	<div class="row">
 		<div class="col-6">
 
@@ -16,6 +17,7 @@
 			<a href="/">Home</a>&nbsp;|&nbsp;<a href="/login">Login</a>
 		</div>
 	</div>
+
 	<div class="row"><h2>User List</h2></div>
 	<div class="row">
 		<a href="/user/add" class="btn btn-primary btn-sm">Add New</a>
