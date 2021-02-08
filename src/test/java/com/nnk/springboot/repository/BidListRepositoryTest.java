@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.repository;
 
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.repositories.BidListRepository;
@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class BidTest {
+public class BidListRepositoryTest {
 
   @Autowired
-  private BidListRepository bidListRepository;
+  private com.nnk.springboot.repositories.BidListRepository bidListRepository;
 
   @Test
   public void bidListTest() {

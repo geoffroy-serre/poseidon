@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/styles.css">
 
 </head>
-<body>
+<body >
 <div class="container col-7 d-flex flex-column justify-content-center align-items-center vh-100">
 
     <div class="container d-flex flex-column  justify-content-center align-items-center">
@@ -25,7 +25,7 @@
                 <div class="col-13 justify-content-start">
                     <input type="text"
                            class="form-control form-control-sm border justify-self-left "
-                           id="username">
+                           id="username" name="username">
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between ">
@@ -33,10 +33,11 @@
                 <div class="col-13 justify-content-start">
                     <input type="password"
                            class="form-control form-control-sm border justify-self-left "
-                           id="password">
+                           id="password" name="password">
                     <span class="has-error" th:text="${error}"></span>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </div>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
             </div>
             <div class="row form-group justify-content-center align-items-center ">
                 <div class="container row  justify-content-center align-items-center">

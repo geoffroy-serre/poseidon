@@ -32,15 +32,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(HttpSecurity http) throws Exception {
     http
+            /*
+             * Access setup
+             */
             .authorizeRequests()
-            .antMatchers("/css/**", "/js/**").permitAll()
+            .antMatchers("/css/**", "/js/**", "/", "/login").permitAll()
             .anyRequest().authenticated()
+
+            /*
+             * Login setup
+             */
             .and()
             .formLogin()
-            .loginPage("/")
+            .defaultSuccessUrl("/bidList/list", true)
             .permitAll()
+
+            /*
+             * Logout setup
+             */
             .and()
             .logout()
+            .logoutSuccessUrl("/")
             .permitAll();
   }
 
@@ -54,5 +66,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   public AuthenticationManager customAuthenticationManager() throws Exception {
     return authenticationManager();
   }
+
 
 }

@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.repository;
 
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 
 @SpringBootTest
-public class CurvePointTest {
+public class CurvePointRepositoryTest {
 
 	@Autowired
 	private CurvePointRepository curvePointRepository;

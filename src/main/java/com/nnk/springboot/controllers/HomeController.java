@@ -10,6 +10,7 @@ public class HomeController
 	@RequestMapping("/")
 	public String home(Model model)
 	{
+		System.out.println("qsdqsdq");
 		return "home";
 	}
 

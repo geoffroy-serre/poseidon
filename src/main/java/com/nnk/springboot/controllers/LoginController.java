@@ -25,21 +25,17 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
-        logger.info("sdfgsqdrgqsrghsdfg");
+        System.out.println("sdfsdfsdf");
         if (securityService.isAuthenticated()) {
-            logger.info("if1");
-            return "redirect:/bidList/list";
-
+            return "redirect:bidList/list";
         }
         if (error != null) {
-            logger.info("if2");
             model.addAttribute("error", "Your username and password is invalid.");
         }
         if (logout != null) {
-            logger.info("if2");
             model.addAttribute("message", "You have been logged out successfully.");
         }
-
+        System.out.println("12316813");
         return "home";
     }
 

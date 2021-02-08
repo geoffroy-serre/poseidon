@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8"/>
 <title>Home</title>
@@ -9,6 +10,7 @@
 <body>
 
 <div class="container">
+
 	<div class="row">
 		<div class="col-6">
 			<a href="/bidList/list">Bid List</a>&nbsp;|&nbsp;
@@ -16,11 +18,13 @@
 			<a href="/rating/list">Ratings</a>&nbsp;|&nbsp;
 			<a href="/trade/list">Trade</a>&nbsp;|&nbsp;
 			<a href="/ruleName/list">Rule</a>
+			<span sec:authorize="hasAuthority('ADMIN')"> | <a  href="/user/list"> Users</a></span>
 		</div>
 		<div class="col-6 text-right">
 			<span>Logged in user:</span> <b th:inline="text"  class="user">
 			[[${#httpServletRequest.remoteUser}]]</b>
-			<form th:action="@{/app-logout}" method="POST">
+			<form th:action="@{/logout}" method="POST">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<input type="submit" class="btn btn-danger" value="Logout"/>
 			</form>
 		</div>
