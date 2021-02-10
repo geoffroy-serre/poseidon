@@ -66,7 +66,7 @@ public class UserIT {
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(302))
-            .andExpect(redirectedUrl("/user/add"))
+            .andExpect(redirectedUrl("/user/list"))
             .andReturn();
 
     assertEquals(userService.findByUsername("Geff").getUsername(), "Geff");
