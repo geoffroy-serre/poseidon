@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
              */
             .authorizeRequests()
             .antMatchers("/css/**", "/js/**", "/", "/login").permitAll()
+            .antMatchers("/user/validate").hasRole("ADMIN")
             .anyRequest().authenticated()
 
             /*
@@ -44,6 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
              */
             .and()
             .formLogin()
+            .loginPage("/")
+            .loginProcessingUrl("/login")
             .defaultSuccessUrl("/bidList/list", true)
             .permitAll()
 

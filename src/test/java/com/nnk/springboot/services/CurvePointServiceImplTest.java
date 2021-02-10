@@ -65,6 +65,6 @@ class CurvePointServiceImplTest {
     curvePoint.setId(1);
     curvePointService.delete(curvePoint);
     Mockito.verify(curvePointRepository, Mockito.times(1)).delete(curvePoint);
-    assertDoesNotThrow(() -> curvePointRepository.delete(curvePoint));
+    assertDoesNotThrow(() -> curvePointService.delete(curvePoint));
   }
 }
