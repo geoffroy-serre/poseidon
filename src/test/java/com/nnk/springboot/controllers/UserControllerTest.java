@@ -3,6 +3,7 @@ package com.nnk.springboot.controllers;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.services.UserServiceImpl;
@@ -141,11 +142,11 @@ public class UserControllerTest {
     MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/user/validate");
     MockMvc buildResult = MockMvcBuilders.standaloneSetup(this.userController).build();
     ResultActions actualPerformResult = buildResult.perform(requestBuilder);
-    actualPerformResult.andExpect(MockMvcResultMatchers.status().isOk())
+    actualPerformResult.andExpect(MockMvcResultMatchers.status().is(302))
             .andExpect(MockMvcResultMatchers.model().size(1))
             .andExpect(MockMvcResultMatchers.model().attributeExists("user"))
-            .andExpect(MockMvcResultMatchers.view().name("user/add"))
-            .andExpect(MockMvcResultMatchers.forwardedUrl("user/add"));
+            .andExpect(MockMvcResultMatchers.view().name("redirect:/user/add"))
+            .andExpect(redirectedUrl("/user/add"));
   }
 }
 

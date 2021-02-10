@@ -41,7 +41,8 @@ public class UserController {
             model.addAttribute("users", userService.findAll());
             return "redirect:/user/list";
         }
-        return "user/add";
+        System.out.println(result.getAllErrors());
+        return "redirect:/user/add";
     }
 
     @GetMapping("/user/update/{id}")

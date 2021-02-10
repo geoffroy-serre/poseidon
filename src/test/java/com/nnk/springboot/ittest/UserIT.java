@@ -3,30 +3,26 @@ package com.nnk.springboot.ittest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.services.UserService;
-import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -56,43 +52,51 @@ public class UserIT {
   @Test
   void userValidateWorkForAdmin() throws Exception {
 
-    User userTest = new User(0,"Geff","pwd","fullName","ADMIN");
-    System.out.println(objectMapper.writeValueAsString(userTest));
-    MvcResult result = this.mockMvc.perform(post("/user/validate").with(user("Geff").roles("ADMIN"))
+    User userTest = new User();
+    userTest.setPassword("pwd");
+    userTest.setUsername("Geff");
+    userTest.setFullname("fullName");
+    userTest.setRole("ADMIN");
+
+
+    MvcResult result = this.mockMvc.perform(post("/user/validate")
+            .flashAttr("user", userTest)
+            .content(objectMapper.writeValueAsString(userTest))
+            .with(user("Geff").roles("ADMIN"))
             .with(csrf())
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(userTest)))
-            .andExpect(status().is(200))
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("/user/add"))
             .andReturn();
 
-   /* User result = userService.findByUsername("Geff");
-    assertEquals("Geff", result.getUsername());
-    assertEquals("Geff LeDev", result.getFullname());
+    assertEquals(userService.findByUsername("Geff").getUsername(), "Geff");
+    assertEquals(userService.findByUsername("Geff").getFullname(), "fullName");
+    assertEquals(userService.findByUsername("Geff").getRole(), "ADMIN");
+    Assertions.assertNull(result.getResponse().getErrorMessage());
 
-    this.mockMvc.perform(get("/user/delete/{id}",userService.findByUsername("Geff").getId())
-    .contentType(MediaType.APPLICATION_JSON)
-    ).andExpect(status().is(200));*/
+    //Deleting created user for this test using direct call to user Service
+    userTest.setId(userService.findByUsername("Geff").getId());
+    userService.delete(userTest);
 
   }
 
   @Test
-  void userValidateWorkForAdminNotValid() throws Exception {
+  void userValidateForAdminNotValid() throws Exception {
 
     User userTest = new User();
+    userTest.setUsername("Geff");
+
     System.out.println(objectMapper.writeValueAsString(userTest));
-    this.mockMvc.perform(post("/user/validate").with(user("Geff").roles("ADMIN"))
+    MvcResult mvcResult = this.mockMvc.perform(post("/user/validate")
+            .flashAttr("user", userTest)
+            .with(user("Geff").roles("ADMIN"))
             .with(csrf())
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(userTest)))
-            .andExpect(status().is(200));
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("/user/add"))
+            .andReturn();
 
-   /* User result = userService.findByUsername("Geff");
-    assertEquals("Geff", result.getUsername());
-    assertEquals("Geff LeDev", result.getFullname());
-
-    this.mockMvc.perform(get("/user/delete/{id}",userService.findByUsername("Geff").getId())
-    .contentType(MediaType.APPLICATION_JSON)
-    ).andExpect(status().is(200));*/
+    Assertions.assertNull(userService.findByUsername("Geff"));
 
   }
 
@@ -113,6 +117,7 @@ public class UserIT {
 
 
   }
+
   @Test
   void getUserList() throws Exception {
 
