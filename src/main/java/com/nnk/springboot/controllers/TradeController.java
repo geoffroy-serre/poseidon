@@ -22,7 +22,7 @@ public class TradeController {
   @RequestMapping("/trade/list")
   public String home(Model model) {
     // TODO: find all Trade, add to model
-    model.addAttribute("trade", tradeService.findAll());
+    model.addAttribute("trades", tradeService.findAll());
     return "trade/list";
   }
 

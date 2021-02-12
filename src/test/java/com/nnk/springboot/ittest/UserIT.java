@@ -1,5 +1,6 @@
 package com.nnk.springboot.ittest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
@@ -17,8 +18,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
@@ -77,7 +77,7 @@ public class UserIT {
     assertEquals(userService.findByUsername("Geff").getUsername(), "Geff");
     assertEquals(userService.findByUsername("Geff").getFullname(), "fullName");
     assertEquals(userService.findByUsername("Geff").getRole(), "ADMIN");
-    Assertions.assertNull(result.getResponse().getErrorMessage());
+    assertNull(result.getResponse().getErrorMessage());
 
     //Deleting user created  for this test using direct call to user Service
     userTest.setId(userService.findByUsername("Geff").getId());
@@ -106,7 +106,7 @@ public class UserIT {
             .andReturn();
 
 
-    Assertions.assertNull(userService.findByUsername("Geff"));
+    assertNull(userService.findByUsername("Geff"));
 
 
   }
@@ -127,7 +127,7 @@ public class UserIT {
             .andExpect(redirectedUrl("/user/add"))
             .andReturn();
 
-    Assertions.assertNull(userService.findByUsername("Geff"));
+    assertNull(userService.findByUsername("Geff"));
 
   }
 
@@ -180,7 +180,7 @@ public class UserIT {
             .andReturn();
 
     assertTrue(userService.findByUsername("admin").getFullname().equals("ImAdmin"));
-    Assertions.assertNull(result.getResponse().getErrorMessage());
+    assertNull(result.getResponse().getErrorMessage());
 
 
     // ReSet to original values
@@ -190,7 +190,32 @@ public class UserIT {
 
   }
 
+@Test
+  void deleteUser() throws Exception {
+  User userTest = new User();
+  userTest.setPassword("1@Pythwd");
+  userTest.setUsername("Geff");
+  userTest.setFullname("fullName");
+  userTest.setRole("ADMIN");
+  userService.save(userTest);
 
+  int id = userService.findByUsername("Geff").getId();
+
+
+  MvcResult result = this.mockMvc.perform(get("/user/delete/"+id)
+          .with(user("Geff").roles("ADMIN"))
+          .with(csrf())
+          .contentType(MediaType.APPLICATION_JSON))
+          .andExpect(status().is(302))
+          .andExpect(redirectedUrl("/user/list"))
+          .andReturn();
+
+  assertNull(userService.findByUsername("Geff"));
+  assertNull(result.getResponse().getErrorMessage());
+
+
+
+}
 
 
 

@@ -23,7 +23,7 @@ public class RatingController {
   @RequestMapping("/rating/list")
   public String home(Model model) {
     // TODO: find all Rating, add to model
-    model.addAttribute("rating", ratingService.findAll());
+    model.addAttribute("ratings", ratingService.findAll());
     return "rating/list";
   }
 
@@ -64,7 +64,7 @@ public class RatingController {
 
       return "redirect:/rating/list";
     }
-    return "/rating/list";
+    return "redirect:/rating/list";
   }
 
   @GetMapping("/rating/delete/{id}")

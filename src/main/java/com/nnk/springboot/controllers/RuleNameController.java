@@ -22,7 +22,7 @@ public class RuleNameController {
   @RequestMapping("/ruleName/list")
   public String home(Model model) {
     // TODO: find all RuleName, add to model
-    model.addAttribute("ruleName", ruleNameService.findAll());
+    model.addAttribute("ruleNames", ruleNameService.findAll());
     return "ruleName/list";
   }
 

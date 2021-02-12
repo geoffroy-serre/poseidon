@@ -3,21 +3,71 @@
 	  xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8"/>
-	<title>Home</title>
+	<title>Update Rating</title>
 	<link rel="stylesheet" href="../../css/bootstrap.min.css" >
 </head>
 <body>
-<div class="container">
+<div class="container col-7 d-flex flex-column justify-content-center align-items-center vh-100">
 
-	<div class="row">
+	<div class="container d-flex flex-column  justify-content-center align-items-center">
 		<h2>Update Rating</h2>
 	</div>
 
-	<div class="row">
-		<form action="#" th:action="@{/rating/update/{id}(id=${rating.id})}" th:object="${rating}" method="post" class="form-horizontal" style="width: 100%">
+	<div class="container row-cols-4  d-flex justify-content-center align-items-center ">
+		<form action="#" th:action="@{/rating/update/{id}(id=${rating.id})}"
+			  th:object="${rating}" method="post" class="form-horizontal" style="width: 100%">
 			<!--
-			TODO: Create a form to edit the values of Rating, there are 2 buttons: Update data and Cancel to the Rating
+			TODO: Create a form to input the values of Rating, there are 2 buttons: Save data and Cancel to the list Rating
 			 -->
+			<div class="form-group row-1 justify-content-between ">
+				<label for="moodysRating" class="col-form-label ">Moody S Rating</label>
+				<div class="col-13 justify-content-start">
+					<input type="text" th:field="*{moodysRating}" id="moodysRating"
+						   placeholder="Moody S Rating"
+						   class="form-control form-control-sm border justify-self-left ">
+					<p class="text-danger" th:if="${#fields.hasErrors('moodysRating')}"
+					   th:errors="*{moodysRating}"></p>
+				</div>
+			</div>
+			<div class="form-group row-1 justify-content-between">
+				<label for="sandPRating" class="col-form-label ">sandPRating</label>
+				<div class="col-13 justify-content-end">
+					<input type="text" id="sandPRating" th:field="*{sandPRating}" placeholder="sandPRating"
+						   class="form-control form-control-sm border ">
+					<p class="text-danger" th:if="${#fields.hasErrors('sandPRating')}"
+					   th:errors="*{sandPRating}"></p>
+				</div>
+			</div>
+			<div class="form-group row-1 justify-content-between">
+				<label for="fitchRating" class="col-form-label ">Fitch Rating</label>
+				<div class="col-13 justify-content-end">
+					<input type="text" th:field="*{fitchRating}" id="fitchRating"
+						   placeholder="fitchRating" class=" form-control form-control-sm border">
+					<p class="text-danger" th:if="${#fields.hasErrors('fitchRating')}"
+					   th:errors="*{fitchRating}">
+					</p>
+				</div>
+			</div>
+			<div class="form-group row-1 justify-content-between">
+				<label for="orderNumber" class="col-form-label ">Order Number</label>
+				<div class="col-13 justify-content-end">
+					<input type="number" th:field="*{orderNumber}" id="orderNumber"
+						   placeholder="orderNumber" class=" form-control form-control-sm border">
+					<p class="text-danger" th:if="${#fields.hasErrors('orderNumber')}"
+					   th:errors="*{orderNumber}">
+					</p>
+				</div>
+			</div>
+
+			<div class="form-group row  justify-content-center align-items-center">
+				<div class="row-cols-7 ">
+					<a class="btn btn-danger btn-sm" href="/rating/list">Cancel</a>
+					<input class="btn btn-primary btn-sm" type="submit" value="Update Rating">
+				</div>
+			</div>
+
+
+
 		</form>
 	</div>
 

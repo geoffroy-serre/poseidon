@@ -1,6 +1,7 @@
 package com.nnk.springboot.ittest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.CurvePointRepository;
@@ -24,8 +25,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -156,6 +157,32 @@ public class CurveIT {
 
     // ReSet to original values
     curvePointService.deleteAll();
+
+  }
+
+  @Test
+  void deleteCurve() throws Exception {
+    CurvePoint curve = new CurvePoint();
+    curve.setCurveId(50);
+    curve.setValue(22.1);
+    curve.setTerm(15.1);
+    curve.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+    curvePointService.save(curve);
+
+    int id = curvePointService.findAll().get(0).getId();
+
+    MvcResult result = this.mockMvc.perform(get("/curvePoint/delete/"+id)
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("/curvePoint/list"))
+            .andReturn();
+
+    assertFalse(curvePointService.findById(id).isPresent());
+    assertNull(result.getResponse().getErrorMessage());
+
+
 
   }
 

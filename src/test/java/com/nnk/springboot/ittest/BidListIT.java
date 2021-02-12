@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
@@ -119,7 +119,7 @@ BidList savedBidList = bidListService.findAll().get(0);
   }
 
   @Test
-  void userUpdate() throws Exception {
+  void bidListUpdate() throws Exception {
     BidList bidList = new BidList();
     bidList.setAccount("account");
     bidList.setType("type");
@@ -148,7 +148,33 @@ BidList savedBidList = bidListService.findAll().get(0);
 
   }
 
+  @Test
+  void deleteBidList() throws Exception {
+    BidList bidList = new BidList();
+    bidList.setAccount("account");
+    bidList.setType("type");
+    bidList.setBidQuantity(20.1);
+    bidListService.save(bidList);
 
+    BidList updated = bidListService.findAll().get(0);
+
+    int id = bidListService.findAll().get(0).getId();
+
+
+    MvcResult result = this.mockMvc.perform(get("/bidList/delete/"+id)
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("/bidList/list"))
+            .andReturn();
+
+    assertFalse(bidListService.findById(id).isPresent());
+    assertNull(result.getResponse().getErrorMessage());
+
+
+
+  }
 
 
 
