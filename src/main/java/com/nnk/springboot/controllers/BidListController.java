@@ -3,6 +3,7 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.services.BidListService;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,10 +38,13 @@ public class BidListController {
   public String validate(@Valid BidList bid, BindingResult result, Model model) {
     // TODO: check data valid and save to db, after saving return bid list
     if (!result.hasErrors()) {
+      bid.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
       bidListService.save(bid);
+
       return "redirect:/bidList/list";
     }
-    return "bidList/list";
+
+    return "redirect:bidList/add";
   }
 
   @GetMapping("/bidList/update/{id}")
@@ -63,6 +67,7 @@ public class BidListController {
 
     if (!result.hasErrors() && bidListService.findById(id).isPresent()) {
       bidList.setId(id);
+      bidList.setRevisionDate(Timestamp.valueOf(LocalDateTime.now()));
       bidListService.save(bidList);
 
       return "redirect:/bidList/list";
