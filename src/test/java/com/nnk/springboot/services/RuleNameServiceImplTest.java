@@ -66,4 +66,11 @@ class RuleNameServiceImplTest {
     Mockito.verify(ruleNameRepository, Mockito.times(1)).delete(ruleName);
     assertDoesNotThrow(() -> ruleNameService.delete(ruleName));
   }
+
+  @Test
+  void deleteById() {
+    ruleNameService.deleteById(ruleName.getId());
+    Mockito.verify(ruleNameRepository, Mockito.times(1)).deleteById(ruleName.getId());
+    assertDoesNotThrow(() -> ruleNameService.deleteById(ruleName.getId()));
+  }
 }
