@@ -63,16 +63,15 @@ public class RuleNameController {
 
       return "redirect:/ruleName/list";
     }
+
     return "redirect:/ruleName/list";
   }
 
   @GetMapping("/ruleName/delete/{id}")
   public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
     // TODO: Find RuleName by Id and delete the RuleName, return to Rule list
-    RuleName ruleName =
-            ruleNameService.findById(id).orElseThrow(() -> new IllegalArgumentException(
-                    "Invalid Trade id: " + id));
-    ruleNameService.delete(ruleName);
+    ruleNameService.deleteById(id);
+    //TODO If not found what happen ?
     return "redirect:/ruleName/list";
   }
 }

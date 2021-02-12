@@ -13,4 +13,6 @@ public interface CurvePointService {
   Optional<CurvePoint> findById(Integer id);
 
   void delete(CurvePoint curvePoint);
+
+  void deleteAll();
 }

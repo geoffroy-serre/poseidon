@@ -41,7 +41,7 @@ public class CurveController {
       curvePointService.save(curvePoint);
       return "redirect:/curvePoint/list";
     }
-    return "curvePoint/list";
+    return "redirect:/curvePoint/add";
   }
 
   @GetMapping("/curvePoint/update/{id}")
@@ -58,14 +58,16 @@ public class CurveController {
   @PostMapping("/curvePoint/update/{id}")
   public String updateCurve(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
                             BindingResult result, Model model) {
+    System.out.println(curvePoint.toString());
     // TODO: check required fields, if valid call service to update Curve and return Curve list
     if (!result.hasErrors() && curvePointService.findById(id).isPresent()) {
       curvePoint.setId(id);
+      curvePoint.setAsOfDate(Timestamp.valueOf(LocalDateTime.now()));
       curvePointService.save(curvePoint);
 
       return "redirect:/curvePoint/list";
     }
-
+    System.out.println(curvePoint.toString());
     return "redirect:/curvePoint/list";
   }
 

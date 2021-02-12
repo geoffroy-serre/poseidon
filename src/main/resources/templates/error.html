@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="utf-8"/>
+    <title>Error</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+    <img src="/imgs/error.png" style="width: 20%; height: 20%">
+    <h1>Ooops An Error Occured. Check your input, or try later.</h1>
+    <p><b>Error Code:</b> <span th:text="${status}"></span></p>
+    <p><b>Message:</b> <span th:text="${message}"></span></p>
+
+</div>
+
+
+</div>
+</body>
+</html>

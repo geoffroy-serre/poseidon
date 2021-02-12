@@ -22,7 +22,7 @@
 			<div class="form-group row-1 justify-content-between ">
 				<label for="curveId" class="col-form-label ">Curve Id</label>
 				<div class="col-13 justify-content-start">
-					<input type="text" th:field="*{curveId}" id="curveId" placeholder="Curve Id"
+					<input type="number" th:field="*{curveId}" id="curveId" placeholder="Curve Id"
 						   class="form-control form-control-sm border justify-self-left ">
 					<p class="text-danger" th:if="${#fields.hasErrors('curveId')}"
 					   th:errors="*{curveId}"></p>
@@ -31,7 +31,7 @@
 			<div class="form-group row-1 justify-content-between">
 				<label for="term" class="col-form-label ">Term</label>
 				<div class="col-13 justify-content-end">
-					<input type="text" id="term" th:field="*{term}" placeholder="Type"
+					<input type="number" step="0.1" id="term" th:field="*{term}" placeholder="Type"
 						   class="form-control form-control-sm border ">
 					<p class="text-danger" th:if="${#fields.hasErrors('term')}"
 					   th:errors="*{term}"></p>

@@ -2,6 +2,7 @@ package com.nnk.springboot.ittest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.domain.User;
+import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
@@ -39,6 +41,9 @@ public class UserIT {
   @Autowired
   private WebApplicationContext wac;
 
+  @Autowired
+  UserRepository userRepository;
+
   private MockMvc mockMvc;
 
   @BeforeEach
@@ -53,7 +58,7 @@ public class UserIT {
   void userValidateWorkForAdmin() throws Exception {
 
     User userTest = new User();
-    userTest.setPassword("pwd");
+    userTest.setPassword("1@Pythwd");
     userTest.setUsername("Geff");
     userTest.setFullname("fullName");
     userTest.setRole("ADMIN");
@@ -74,9 +79,35 @@ public class UserIT {
     assertEquals(userService.findByUsername("Geff").getRole(), "ADMIN");
     Assertions.assertNull(result.getResponse().getErrorMessage());
 
-    //Deleting created user for this test using direct call to user Service
+    //Deleting user created  for this test using direct call to user Service
     userTest.setId(userService.findByUsername("Geff").getId());
     userService.delete(userTest);
+
+  }
+
+  @Test
+  void userValidatePwdErrorForAdmin() throws Exception {
+
+    User userTest = new User();
+    userTest.setPassword("weee");
+    userTest.setUsername("Geff");
+    userTest.setFullname("fullName");
+    userTest.setRole("ADMIN");
+
+
+    MvcResult result = this.mockMvc.perform(post("/user/validate")
+            .flashAttr("user", userTest)
+            .content(objectMapper.writeValueAsString(userTest))
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("/user/add"))
+            .andReturn();
+
+
+    Assertions.assertNull(userService.findByUsername("Geff"));
+
 
   }
 
@@ -121,16 +152,46 @@ public class UserIT {
   @Test
   void getUserList() throws Exception {
 
-    MvcResult mvcResult = this.mockMvc.perform(get("/user/list").with(user("Geff").roles("USER"))
+    MvcResult mvcResult = this.mockMvc.perform(get("/user/list").with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(200))
             .andReturn();
 
-    Assertions.assertTrue(mvcResult.getResponse().getContentAsString().contains("admin"));
-    Assertions.assertTrue(mvcResult.getResponse().getContentAsString().contains("user"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("admin"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("user"));
 
 
   }
+
+  @Test
+  void userUpdate() throws Exception {
+    User admine = userService.findByUsername("admin");
+    admine.setFullname("ImAdmin");
+
+    MvcResult result = this.mockMvc.perform(post("/user/update/1")
+            .flashAttr("user", admine)
+            .content(objectMapper.writeValueAsString(admine))
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("/user/list"))
+            .andReturn();
+
+    assertTrue(userService.findByUsername("admin").getFullname().equals("ImAdmin"));
+    Assertions.assertNull(result.getResponse().getErrorMessage());
+
+
+    // ReSet to original values
+    admine.setFullname("Administrator");
+    admine.setPassword("$2y$10$QSs5g5GyZ1rP29Lvz2iCOuULRZFO.jl1kiKj8sgEig8O/E70Ae/WO");
+    userService.save(admine);
+
+  }
+
+
+
+
 
 }

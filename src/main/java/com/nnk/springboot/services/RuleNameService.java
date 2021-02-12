@@ -10,5 +10,6 @@ public interface RuleNameService {
   List<RuleName> findAll();
   void save(RuleName ruleName);
   Optional<RuleName> findById(Integer id);
+  void deleteById(Integer id);
   void delete(RuleName ruleName);
 }

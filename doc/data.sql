@@ -1,6 +1,6 @@
 
 CREATE TABLE bid_list (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+  id int(4) NOT NULL AUTO_INCREMENT,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
   bid_quantity DOUBLE,
@@ -27,7 +27,7 @@ CREATE TABLE bid_list (
 );
 
 CREATE TABLE trade (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+  id int(4) NOT NULL AUTO_INCREMENT,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
   buy_quantity DOUBLE,
@@ -53,7 +53,7 @@ CREATE TABLE trade (
 );
 
 CREATE TABLE curve_point (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+  id int(4) NOT NULL AUTO_INCREMENT,
   curve_id tinyint,
   as_of_date TIMESTAMP,
   term DOUBLE ,
@@ -64,7 +64,7 @@ CREATE TABLE curve_point (
 );
 
 CREATE TABLE rating (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+  id int(4) NOT NULL AUTO_INCREMENT,
   moodys_rating VARCHAR(125),
   sand_p_rating VARCHAR(125),
   fitch_rating VARCHAR(125),
@@ -74,7 +74,7 @@ CREATE TABLE rating (
 );
 
 CREATE TABLE rule_name (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+  id int(4) NOT NULL AUTO_INCREMENT,
   name VARCHAR(125),
   description VARCHAR(125),
   json VARCHAR(125),
@@ -86,7 +86,7 @@ CREATE TABLE rule_name (
 );
 
 CREATE TABLE users (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+  id int(4) NOT NULL AUTO_INCREMENT,
   username VARCHAR(125),
   password VARCHAR(125),
   fullname VARCHAR(125),
@@ -95,5 +95,5 @@ CREATE TABLE users (
   PRIMARY KEY (id)
 );
 
-insert into users(fullname, username, password, role) values("Administrator", "admin", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "ADMIN");
-insert into users(fullname, username, password, role) values("User", "user", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "USER");
+insert into users(fullname, username, password, role) values("Administrator", "admin", "$2y$10$cxu/W5soXwSrfe3hqKVy5e0Wlq9vceBvVKJgGMe.4p9cxayMV8dfi", "ADMIN");
+insert into users(fullname, username, password, role) values("User", "user", "$2y$10$pry.VSHALi09BnY5Yo4mFunqNJaoEwvzYIchkvnAEDRXvTHvJqydW", "USER");

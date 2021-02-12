@@ -32,4 +32,9 @@ public class CurvePointServiceImpl implements  CurvePointService{
   public void delete(CurvePoint curvePoint) {
     curvePointRepository.delete(curvePoint);
   }
+
+  @Override
+  public void deleteAll() {
+    curvePointRepository.deleteAll();
+  }
 }

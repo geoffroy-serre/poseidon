@@ -19,7 +19,7 @@
 		<div class="col-6 text-right">
 			Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>
 			<form th:action="@{/app-logout}" method="POST">
-				<input type="submit" value="Logout"/>
+				<input type="submit" class="btn btn-danger" value="Logout"/>
 			</form>
 		</div>
 	</div>
@@ -36,10 +36,7 @@
 					<th>Action</th>
 				</tr>
 			</thead>
-
-			<!-- TODO: Show all CurvePoint to the table, the action column will have Edit & Delete buttons -->
-
-			<tbody>
+						<tbody>
 			<tr th:each="curvePoint : ${curvePoint}">
 				<td style="width: 10%" th:text="${curvePoint.id}"></td>
 				<td th:text="${curvePoint.curveId}"></td>
