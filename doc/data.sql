@@ -54,7 +54,7 @@ CREATE TABLE trade (
 
 CREATE TABLE curve_point (
   id int(4) NOT NULL AUTO_INCREMENT,
-  curve_id tinyint,
+  curve_id int,
   as_of_date TIMESTAMP,
   term DOUBLE ,
   value DOUBLE ,
@@ -68,7 +68,7 @@ CREATE TABLE rating (
   moodys_rating VARCHAR(125),
   sand_p_rating VARCHAR(125),
   fitch_rating VARCHAR(125),
-  order_number tinyint,
+  order_number int,
 
   PRIMARY KEY (Id)
 );
