@@ -27,6 +27,7 @@ class RatingServiceImplTest {
   RatingService ratingService = new RatingServiceImpl();
 
   Rating rating = new Rating();
+
   @Test
   void findAll() {
     List<Rating> ratings = new ArrayList<>();

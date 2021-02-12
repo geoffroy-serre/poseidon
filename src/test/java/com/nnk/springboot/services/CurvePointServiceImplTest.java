@@ -1,6 +1,5 @@
 package com.nnk.springboot.services;
 
-import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ class CurvePointServiceImplTest {
   CurvePointService curvePointService = new CurvePointServiceImpl();
 
 
-
   @Test
   void findAll() {
     List<CurvePoint> curvePoints = new ArrayList<>();
@@ -39,7 +37,7 @@ class CurvePointServiceImplTest {
 
   @Test
   void save() {
-    CurvePoint curvePoint = new CurvePoint(1,20.2,52.1);
+    CurvePoint curvePoint = new CurvePoint(1, 20.2, 52.1);
     when(curvePointRepository.save(curvePoint)).thenReturn(curvePoint);
     curvePointService.save(curvePoint);
     Mockito.verify(curvePointRepository, Mockito.times(1)).save(curvePoint);
@@ -48,8 +46,8 @@ class CurvePointServiceImplTest {
 
   @Test
   void findById() {
-    CurvePoint curvePoint = new CurvePoint(1,20.2,52.1);
-   curvePoint.setId(1);
+    CurvePoint curvePoint = new CurvePoint(1, 20.2, 52.1);
+    curvePoint.setId(1);
     Optional<CurvePoint> curvePoints = Optional.of(curvePoint);
 
     when(curvePointRepository.findById(1)).thenReturn(curvePoints);
@@ -61,7 +59,7 @@ class CurvePointServiceImplTest {
 
   @Test
   void delete() {
-    CurvePoint curvePoint = new CurvePoint(1,20.2,52.1);
+    CurvePoint curvePoint = new CurvePoint(1, 20.2, 52.1);
     curvePoint.setId(1);
     curvePointService.delete(curvePoint);
     Mockito.verify(curvePointRepository, Mockito.times(1)).delete(curvePoint);

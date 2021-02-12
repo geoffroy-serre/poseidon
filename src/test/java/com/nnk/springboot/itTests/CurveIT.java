@@ -1,13 +1,9 @@
-package com.nnk.springboot.ittest;
+package com.nnk.springboot.itTests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.CurvePointRepository;
-import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.CurvePointService;
-import com.nnk.springboot.services.UserService;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,7 +11,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -26,9 +21,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
@@ -46,15 +38,10 @@ public class CurveIT {
 
   @Autowired
   CurvePointService curvePointService;
-
-
-  @Autowired
-  private WebApplicationContext wac;
-
   @Autowired
   CurvePointRepository curvePointRepository;
-
-
+  @Autowired
+  private WebApplicationContext wac;
   private MockMvc mockMvc;
 
   @BeforeEach
@@ -84,7 +71,7 @@ public class CurveIT {
             .andExpect(redirectedUrl("/curvePoint/list"))
             .andReturn();
 
-    List<CurvePoint> resultCurves  = curvePointService.findAll();
+    List<CurvePoint> resultCurves = curvePointService.findAll();
     System.out.println(resultCurves.size());
     assertEquals(resultCurves.get(0).getCurveId(), curve.getCurveId());
     assertEquals(resultCurves.get(0).getTerm(), curve.getTerm());
@@ -92,7 +79,7 @@ public class CurveIT {
     Assertions.assertNull(result.getResponse().getErrorMessage());
 
     //Deleting curve created  for this test using direct call to user Service
-   curvePointService.deleteAll();
+    curvePointService.deleteAll();
 
   }
 
@@ -116,16 +103,25 @@ public class CurveIT {
   }
 
 
-
   @Test
   void getCurveList() throws Exception {
 
+    CurvePoint curve = new CurvePoint();
+    curve.setCurveId(50);
+    curve.setValue(22.1);
+    curve.setTerm(15.1);
+    curve.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+    curvePointService.save(curve);
     MvcResult mvcResult = this.mockMvc.perform(get("/curvePoint/list").with(user("Geff").roles(
             "ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(200))
             .andReturn();
+
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("50"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("22.1"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("15.1"));
 
   }
 
@@ -138,10 +134,10 @@ public class CurveIT {
     curve.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
     curvePointService.save(curve);
 
-   CurvePoint toUpdate = curvePointService.findAll().get(0);
-   toUpdate.setCurveId(52);
+    CurvePoint toUpdate = curvePointService.findAll().get(0);
+    toUpdate.setCurveId(52);
 
-    MvcResult result = this.mockMvc.perform(post("/curvePoint/update/"+toUpdate.getId())
+    MvcResult result = this.mockMvc.perform(post("/curvePoint/update/" + toUpdate.getId())
             .flashAttr("curvePoint", toUpdate)
             .content(objectMapper.writeValueAsString(toUpdate))
             .with(user("Geff").roles("ADMIN"))
@@ -151,7 +147,7 @@ public class CurveIT {
             .andExpect(redirectedUrl("/curvePoint/list"))
             .andReturn();
 
-    assertTrue(curvePointService.findById(toUpdate.getId()).get().getCurveId()==52);
+    assertTrue(curvePointService.findById(toUpdate.getId()).get().getCurveId() == 52);
     Assertions.assertNull(result.getResponse().getErrorMessage());
 
 
@@ -159,6 +155,36 @@ public class CurveIT {
     curvePointService.deleteAll();
 
   }
+
+  @Test
+  void curveUpdateFail() throws Exception {
+    CurvePoint curve = new CurvePoint();
+    curve.setId(1);
+    curve.setCurveId(50);
+    curve.setValue(22.1);
+    curve.setTerm(15.1);
+    curve.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+
+
+    MvcResult result = this.mockMvc.perform(post("/curvePoint/update/" + curve.getId())
+            .flashAttr("curvePoint", curve)
+            .content(objectMapper.writeValueAsString(curve))
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("/curvePoint/list"))
+            .andReturn();
+
+    assertFalse(curvePointService.findById(curve.getId()).isPresent());
+    Assertions.assertNull(result.getResponse().getErrorMessage());
+
+
+    // ReSet to original values
+    curvePointService.deleteAll();
+
+  }
+
 
   @Test
   void deleteCurve() throws Exception {
@@ -171,7 +197,7 @@ public class CurveIT {
 
     int id = curvePointService.findAll().get(0).getId();
 
-    MvcResult result = this.mockMvc.perform(get("/curvePoint/delete/"+id)
+    MvcResult result = this.mockMvc.perform(get("/curvePoint/delete/" + id)
             .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
@@ -183,10 +209,7 @@ public class CurveIT {
     assertNull(result.getResponse().getErrorMessage());
 
 
-
   }
-
-
 
 
 }

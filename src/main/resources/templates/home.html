@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title> Spring Boot </title>
-    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../css/styles.css">
+    <title>Poseidon </title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/styles.css" rel="stylesheet" type="text/css">
 
 </head>
-<body >
+<body>
 <div class="container col-7 d-flex flex-column justify-content-center align-items-center vh-100">
 
     <div class="container d-flex flex-column  justify-content-center align-items-center">
@@ -17,31 +17,31 @@
         <b>Login with Username and Password</b><br>
     </div>
     <div class="container row-cols-4  d-flex justify-content-center align-items-center ">
-        <form class="justify-content-center align-items-center " th:action="@{/login}"
-              method="POST">
+        <form class="justify-content-center align-items-center " method="POST"
+              th:action="@{/login}">
 
             <div class="form-group row-1 justify-content-between ">
-                <label for="username" class="col-form-label">User</label>
+                <label class="col-form-label" for="username">User</label>
                 <div class="col-13 justify-content-start">
-                    <input type="text"
-                           class="form-control form-control-sm border justify-self-left "
-                           id="username" name="username">
+                    <input class="form-control form-control-sm border justify-self-left "
+                           id="username"
+                           name="username" type="text">
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between ">
-                <label for="password" class="col-form-label">Password</label>
+                <label class="col-form-label" for="password">Password</label>
                 <div class="col-13 justify-content-start">
-                    <input type="password"
-                           class="form-control form-control-sm border justify-self-left "
-                           id="password" name="password">
+                    <input class="form-control form-control-sm border justify-self-left "
+                           id="password"
+                           name="password" type="password">
                     <span class="has-error" th:text="${error}"></span>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
                 </div>
 
             </div>
             <div class="row form-group justify-content-center align-items-center ">
                 <div class="container row  justify-content-center align-items-center">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button class="btn btn-primary" type="submit">Login</button>
                 </div>
             </div>
         </form>

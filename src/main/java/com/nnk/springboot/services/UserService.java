@@ -9,10 +9,14 @@ import org.springframework.stereotype.Service;
 public interface UserService {
 
   List<User> findAll();
+
   void save(User user);
+
   void delete(User user);
+
   Optional<User> findById(Integer id);
+
   User findByUsername(String username);
 
-   void deleteById(Integer id);
+  void deleteById(Integer id);
 }

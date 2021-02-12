@@ -1,67 +1,65 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8"/>
-	<title>Trade Update</title>
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+    <meta charset="utf-8"/>
+    <title>Trade Update</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container col-7 d-flex flex-column justify-content-center align-items-center vh-100">
 
-	<div class="container d-flex flex-column  justify-content-center align-items-center">
-		<h2>Update Trade</h2>
-	</div>
+    <div class="container d-flex flex-column  justify-content-center align-items-center">
+        <h2>Update Trade</h2>
+    </div>
 
-	<div class="container row-cols-4  d-flex justify-content-center align-items-center ">
-		<form action="#" th:action="@{/trade/update/{id}(id=${trade.id})}" th:object="${trade}"
-			  method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to input the values of Trade, there are 2 buttons: Save data and Cancel to the list Trade
-			 -->
-			<div class="form-group row-1 justify-content-between ">
-				<label for="account" class="col-form-label ">account</label>
-				<div class="col-13 justify-content-start">
-					<input type="text" th:field="*{account}" id="account"
-						   placeholder="account"
-						   class="form-control form-control-sm border justify-self-left ">
-					<p class="text-danger" th:if="${#fields.hasErrors('account')}"
-					   th:errors="*{account}"></p>
-				</div>
-			</div>
-			<div class="form-group row-1 justify-content-between">
-				<label for="type" class="col-form-label ">type</label>
-				<div class="col-13 justify-content-end">
-					<input type="text" id="type" th:field="*{type}" placeholder="type"
-						   class="form-control form-control-sm border ">
-					<p class="text-danger" th:if="${#fields.hasErrors('type')}"
-					   th:errors="*{type}"></p>
-				</div>
-			</div>
-			<div class="form-group row-1 justify-content-between">
-				<label for="buyQuantity" class="col-form-label ">buyQuantity</label>
-				<div class="col-13 justify-content-end">
-					<input type="number" th:field="*{buyQuantity}" id="buyQuantity"
-						   placeholder="buyQuantity" class=" form-control form-control-sm border">
-					<p class="text-danger" th:if="${#fields.hasErrors('buyQuantity')}"
-					   th:errors="*{buyQuantity}">
-					</p>
-				</div>
-			</div>
-
-
-			<div class="form-group row  justify-content-center align-items-center">
-				<div class="row-cols-7 ">
-					<a class="btn btn-danger btn-sm" href="/trade/list">Cancel</a>
-					<input class="btn btn-primary btn-sm" type="submit" value="Update Trade">
-				</div>
-			</div>
+    <div class="container row-cols-4  d-flex justify-content-center align-items-center ">
+        <form action="#" class="form-horizontal" method="post"
+              style="width: 100%" th:action="@{/trade/update/{id}(id=${trade.id})}" th:object="${trade}">
+            <!--
+            TODO: Create a form to input the values of Trade, there are 2 buttons: Save data and Cancel to the list Trade
+             -->
+            <div class="form-group row-1 justify-content-between ">
+                <label class="col-form-label " for="account">account</label>
+                <div class="col-13 justify-content-start">
+                    <input class="form-control form-control-sm border justify-self-left " id="account" placeholder="account"
+                           th:field="*{account}"
+                           type="text">
+                    <p class="text-danger" th:errors="*{account}"
+                       th:if="${#fields.hasErrors('account')}"></p>
+                </div>
+            </div>
+            <div class="form-group row-1 justify-content-between">
+                <label class="col-form-label " for="type">type</label>
+                <div class="col-13 justify-content-end">
+                    <input class="form-control form-control-sm border " id="type" placeholder="type" th:field="*{type}"
+                           type="text">
+                    <p class="text-danger" th:errors="*{type}"
+                       th:if="${#fields.hasErrors('type')}"></p>
+                </div>
+            </div>
+            <div class="form-group row-1 justify-content-between">
+                <label class="col-form-label " for="buyQuantity">buyQuantity</label>
+                <div class="col-13 justify-content-end">
+                    <input class=" form-control form-control-sm border" id="buyQuantity" placeholder="buyQuantity"
+                           th:field="*{buyQuantity}" type="number">
+                    <p class="text-danger" th:errors="*{buyQuantity}"
+                       th:if="${#fields.hasErrors('buyQuantity')}">
+                    </p>
+                </div>
+            </div>
 
 
+            <div class="form-group row  justify-content-center align-items-center">
+                <div class="row-cols-7 ">
+                    <a class="btn btn-danger btn-sm" href="/trade/list">Cancel</a>
+                    <input class="btn btn-primary btn-sm" type="submit" value="Update Trade">
+                </div>
+            </div>
 
 
-		</form>
-	</div>
+        </form>
+    </div>
 
 </div>
 </body>

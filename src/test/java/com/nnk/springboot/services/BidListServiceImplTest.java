@@ -32,37 +32,37 @@ class BidListServiceImplTest {
     when(bidListRepository.findAll()).thenReturn(bidlists);
     bidListService.findAll();
     Mockito.verify(bidListRepository, Mockito.times(1)).findAll();
-    assertEquals(bidListService.findAll(),bidlists);
+    assertEquals(bidListService.findAll(), bidlists);
   }
 
   @Test
   void save() {
-    BidList bidList = new BidList("account","type",10.0);
+    BidList bidList = new BidList("account", "type", 10.0);
     when(bidListRepository.save(bidList)).thenReturn(bidList);
     bidListService.save(bidList);
     Mockito.verify(bidListRepository, Mockito.times(1)).save(bidList);
-    assertDoesNotThrow(()->bidListService.save(bidList));
+    assertDoesNotThrow(() -> bidListService.save(bidList));
   }
 
   @Test
   void findById() {
-    BidList bidList = new BidList("account","type",10.0);
+    BidList bidList = new BidList("account", "type", 10.0);
     bidList.setId(1);
     Optional<BidList> bidLists = Optional.of(bidList);
 
     when(bidListRepository.findById(1)).thenReturn(bidLists);
     bidListService.findById(1);
     Mockito.verify(bidListRepository, Mockito.times(1)).findById(1);
-    assertEquals(bidListService.findById(1),bidLists);
+    assertEquals(bidListService.findById(1), bidLists);
 
   }
 
   @Test
   void delete() {
-    BidList bidList = new BidList("account","type",10.0);
+    BidList bidList = new BidList("account", "type", 10.0);
     bidList.setId(1);
     bidListService.delete(bidList);
     Mockito.verify(bidListRepository, Mockito.times(1)).delete(bidList);
-    assertDoesNotThrow(()->bidListRepository.delete(bidList));
+    assertDoesNotThrow(() -> bidListRepository.delete(bidList));
   }
 }

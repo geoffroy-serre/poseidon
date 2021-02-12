@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8"/>
     <title>Home</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/styles.css">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/styles.css" rel="stylesheet">
 
 </head>
 
@@ -17,37 +17,37 @@
     </div>
 
     <div class="container row-cols-4  d-flex justify-content-center align-items-center ">
-        <form action="#" th:action="@{/bidList/update/{id}(id=${bidList.id})}"
-              th:object="${bidList}"
-              method="post" class="justify-content-center align-items-center ">
+        <form action="#" class="justify-content-center align-items-center "
+              method="post"
+              th:action="@{/bidList/update/{id}(id=${bidList.id})}" th:object="${bidList}">
             <!--
         TODO: Create a form to input the values of Bid, there are 2 buttons: Save data and Cancel to the list Bid
          -->
             <div class="form-group row-1 justify-content-between ">
-                <label for="account" class="col-form-label ">Account</label>
+                <label class="col-form-label " for="account">Account</label>
                 <div class="col-13 justify-content-start">
-                    <input type="text" th:field="*{account}" id="account" placeholder="Account"
-                           class="form-control form-control-sm border justify-self-left ">
-                    <p class="text-danger" th:if="${#fields.hasErrors('account')}"
-                       th:errors="*{account}"></p>
+                    <input class="form-control form-control-sm border justify-self-left " id="account" placeholder="Account" th:field="*{account}"
+                           type="text">
+                    <p class="text-danger" th:errors="*{account}"
+                       th:if="${#fields.hasErrors('account')}"></p>
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between">
-                <label for="type" class="col-form-label ">Type</label>
+                <label class="col-form-label " for="type">Type</label>
                 <div class="col-13 justify-content-end">
-                    <input type="text" id="type" th:field="*{type}" placeholder="Type"
-                           class="form-control form-control-sm border ">
-                    <p class="text-danger" th:if="${#fields.hasErrors('type')}"
-                       th:errors="*{type}"></p>
+                    <input class="form-control form-control-sm border " id="type" placeholder="Type" th:field="*{type}"
+                           type="text">
+                    <p class="text-danger" th:errors="*{type}"
+                       th:if="${#fields.hasErrors('type')}"></p>
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between">
-                <label for="bidQuantity" class="col-form-label ">Bid Quantity</label>
+                <label class="col-form-label " for="bidQuantity">Bid Quantity</label>
                 <div class="col-13 justify-content-end">
-                    <input type="number" step="0.1" th:field="*{bidQuantity}" id="bidQuantity"
-                           placeholder="Bid Quantity" class=" form-control form-control-sm border">
-                    <p class="text-danger" th:if="${#fields.hasErrors('bidQuantity')}"
-                       th:errors="*{bidQuantity}">
+                    <input class=" form-control form-control-sm border" id="bidQuantity" placeholder="Bid Quantity" step="0.1"
+                           th:field="*{bidQuantity}" type="number">
+                    <p class="text-danger" th:errors="*{bidQuantity}"
+                       th:if="${#fields.hasErrors('bidQuantity')}">
                     </p>
                 </div>
             </div>

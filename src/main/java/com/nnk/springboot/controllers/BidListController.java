@@ -4,7 +4,8 @@ import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.services.BidListService;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,18 +20,21 @@ import javax.validation.Valid;
 @Controller
 public class BidListController {
 
+  private static final Logger logger = LoggerFactory.getLogger(BidListController.class);
   @Autowired
   BidListService bidListService;
 
   @RequestMapping("/bidList/list")
   public String home(Model model) {
-    // DONE: call service find all bids to show to the view
+
     model.addAttribute("bidList", bidListService.findAll());
+    logger.debug("bidList displayed");
     return "bidList/list";
   }
 
   @GetMapping("/bidList/add")
   public String addBidForm(BidList bid) {
+    logger.debug("bid add displayed");
     return "bidList/add";
   }
 
@@ -40,10 +44,10 @@ public class BidListController {
     if (!result.hasErrors()) {
       bid.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
       bidListService.save(bid);
-
+      logger.debug("bid validated successfully");
       return "redirect:/bidList/list";
     }
-
+    logger.debug("bid not validated: " + result.getAllErrors().toString());
     return "redirect:bidList/add";
   }
 
@@ -55,7 +59,7 @@ public class BidListController {
                     "Invalid BidList id: " + id));
 
     model.addAttribute("bidList", bid);
-
+    logger.debug("bid update form sent for id: " + id);
     return "bidList/update";
 
   }
@@ -69,10 +73,10 @@ public class BidListController {
       bidList.setId(id);
       bidList.setRevisionDate(Timestamp.valueOf(LocalDateTime.now()));
       bidListService.save(bidList);
-
+      logger.debug("bid for id: " + id);
       return "redirect:/bidList/list";
     }
-
+    logger.debug("bid not updated for id: " + id + " " + result.getAllErrors().toString());
     return "/bidList/list";
   }
 
@@ -83,6 +87,7 @@ public class BidListController {
             bidListService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                     "Invalid BidList id: " + id));
     bidListService.delete(bid);
+    logger.debug("bid deleted for id: " + id);
     return "redirect:/bidList/list";
   }
 }

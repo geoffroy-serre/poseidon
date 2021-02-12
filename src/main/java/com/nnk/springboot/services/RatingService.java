@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public interface RatingService {
   List<Rating> findAll();
+
   void save(Rating rating);
+
   Optional<Rating> findById(Integer id);
+
   void delete(Rating rating);
 }

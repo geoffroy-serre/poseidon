@@ -17,12 +17,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+  @Autowired
+  PasswordEncoder passwordEncoder;
   @Qualifier("userDetailsServiceImpl")
   @Autowired
   private UserDetailsService userDetailsService;
-
-  @Autowired
-  PasswordEncoder passwordEncoder;
 
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder() {

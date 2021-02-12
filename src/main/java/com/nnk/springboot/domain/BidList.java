@@ -3,9 +3,8 @@ package com.nnk.springboot.domain;
 import java.sql.Timestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
-
-
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -22,13 +21,13 @@ public class BidList {
   private Integer id;
 
   @Column(name = "account")
-  @NotBlank(message="Account is mandatory")
+  @NotBlank(message = "Account is mandatory")
   @Size(max = 30)
   private String account;
 
   @Column(name = "type")
   @Size(max = 30)
-  @NotBlank(message="Type is mandatory")
+  @NotBlank(message = "Type is mandatory")
   private String type;
 
   @Column(name = "bid_quantity")

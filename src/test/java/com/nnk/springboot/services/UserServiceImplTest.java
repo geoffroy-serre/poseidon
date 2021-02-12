@@ -1,9 +1,7 @@
 package com.nnk.springboot.services;
 
 
-import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.domain.User;
-import com.nnk.springboot.repositories.TradeRepository;
 import com.nnk.springboot.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.List;

@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Application {
-// TODO Activer et configurer SpringSecurity
-	public static void main(String[] args) {
+  // TODO Activer et configurer SpringSecurity
+  public static void main(String[] args) {
 
-		SpringApplication.run(Application.class, args);
-	}
+    SpringApplication.run(Application.class, args);
+  }
 }

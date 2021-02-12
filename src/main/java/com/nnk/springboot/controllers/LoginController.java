@@ -8,55 +8,53 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("app")
 public class LoginController {
 
-    @Autowired
-    private UserRepository userRepository;
+  private static final Logger logger = LogManager.getLogger(LoginController.class);
+  @Autowired
+  SecurityService securityService;
+  @Autowired
+  private UserRepository userRepository;
 
-    @Autowired
-    SecurityService securityService;
+  @GetMapping("/login")
+  public String login(Model model, String error, String logout) {
 
-    private static final Logger logger = LogManager.getLogger("truc");
+    if (securityService.isAuthenticated()) {
+      logger.debug("user redirected to bidList/list");
+      return "redirect:bidList/list";
 
-    @GetMapping("/login")
-    public String login(Model model, String error, String logout) {
-        System.out.println("sdfsdfsdf");
-        if (securityService.isAuthenticated()) {
-            return "redirect:bidList/list";
-        }
-        if (error != null) {
-            model.addAttribute("error", "Your username and password is invalid.");
-        }
-        if (logout != null) {
-            model.addAttribute("message", "You have been logged out successfully.");
-        }
-        System.out.println("12316813");
-        return "home";
     }
-
-
-
-    @GetMapping("secure/article-details")
-    public ModelAndView getAllUserArticles() {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("users", userRepository.findAll());
-        mav.setViewName("user/list");
-        return mav;
+    if (error != null) {
+      logger.debug("Error on login " + error);
+      model.addAttribute("error", "Your username and password is invalid.");
     }
-
-    @GetMapping("/error")
-    public ModelAndView error() {
-        ModelAndView mav = new ModelAndView();
-        String errorMessage= "You are not authorized for the requested data.";
-        mav.addObject("errorMsg", errorMessage);
-        mav.setViewName("403");
-        return mav;
+    if (logout != null) {
+      logger.debug("User logged out " + logout);
+      model.addAttribute("message", "You have been logged out successfully.");
     }
+    return "home";
+  }
+
+
+  @GetMapping("secure/article-details")
+  public ModelAndView getAllUserArticles() {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("users", userRepository.findAll());
+    mav.setViewName("user/list");
+    return mav;
+  }
+
+  @GetMapping("/error")
+  public ModelAndView error() {
+    ModelAndView mav = new ModelAndView();
+    String errorMessage = "You are not authorized for the requested data.";
+    mav.addObject("errorMsg", errorMessage);
+    mav.setViewName("403");
+    return mav;
+  }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CurvePointService {
   List<CurvePoint> findAll();
+
   public void save(CurvePoint curvePoint);
 
   Optional<CurvePoint> findById(Integer id);

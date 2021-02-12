@@ -1,7 +1,6 @@
 package com.nnk.springboot.repository;
 
 import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.repositories.BidListRepository;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Assertions;

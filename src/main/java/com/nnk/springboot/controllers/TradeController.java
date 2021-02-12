@@ -4,6 +4,8 @@ import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.services.TradeService;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,56 +18,62 @@ import javax.validation.Valid;
 
 @Controller
 public class TradeController {
-  // TODO: Inject Trade service
+  private static final Logger logger = LoggerFactory.getLogger(TradeController.class);
 
   @Autowired
   TradeService tradeService;
 
   @RequestMapping("/trade/list")
   public String home(Model model) {
-    // TODO: find all Trade, add to model
+
     model.addAttribute("trades", tradeService.findAll());
+    logger.debug("trade list displayed");
     return "trade/list";
   }
 
   @GetMapping("/trade/add")
   public String addUser(Trade trade) {
+    logger.debug("trade add form displayed");
     return "trade/add";
   }
 
   @PostMapping("/trade/validate")
   public String validate(@Valid Trade trade, BindingResult result, Model model) {
-    // TODO: check data valid and save to db, after saving return Trade list
+
     if (!result.hasErrors()) {
       trade.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
       tradeService.save(trade);
+      logger.debug("trade validated");
       return "redirect:/trade/list";
     }
+    logger.debug("trade not validated " + result.getAllErrors().toString());
     return "trade/add";
   }
 
   @GetMapping("/trade/update/{id}")
   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    // TODO: get Trade by Id and to model then show to the form
+
     Trade trade =
             tradeService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                     "Invalid Trade id: " + id));
 
     model.addAttribute("trade", trade);
+    logger.debug("trade update form sent for id: " + id);
     return "trade/update";
   }
 
   @PostMapping("/trade/update/{id}")
   public String updateTrade(@PathVariable("id") Integer id, @Valid Trade trade,
                             BindingResult result, Model model) {
-    // TODO: check required fields, if valid call service to update Trade and return Trade list
+
     if (!result.hasErrors() && tradeService.findById(id).isPresent()) {
       trade.setId(id);
       trade.setRevisionDate(Timestamp.valueOf(LocalDateTime.now()));
       tradeService.save(trade);
-
+      logger.debug("trade updated for id: " + id);
       return "redirect:/trade/list";
     }
+    logger.debug("trade not updated id: " + id + " " + result.getAllErrors().toString());
     return "redirect:/trade/list";
   }
 
@@ -76,6 +84,7 @@ public class TradeController {
             tradeService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                     "Invalid Trade id: " + id));
     tradeService.delete(trade);
+    logger.debug("trade deleted for id: " + id);
     return "redirect:/trade/list";
   }
 }

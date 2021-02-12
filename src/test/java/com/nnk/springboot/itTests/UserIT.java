@@ -1,11 +1,9 @@
-package com.nnk.springboot.ittest;
+package com.nnk.springboot.itTests;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.UserService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,14 +34,10 @@ public class UserIT {
 
   @Autowired
   UserService userService;
-
-
-  @Autowired
-  private WebApplicationContext wac;
-
   @Autowired
   UserRepository userRepository;
-
+  @Autowired
+  private WebApplicationContext wac;
   private MockMvc mockMvc;
 
   @BeforeEach
@@ -190,33 +184,33 @@ public class UserIT {
 
   }
 
-@Test
+
+
+  @Test
   void deleteUser() throws Exception {
-  User userTest = new User();
-  userTest.setPassword("1@Pythwd");
-  userTest.setUsername("Geff");
-  userTest.setFullname("fullName");
-  userTest.setRole("ADMIN");
-  userService.save(userTest);
+    User userTest = new User();
+    userTest.setPassword("1@Pythwd");
+    userTest.setUsername("Geff");
+    userTest.setFullname("fullName");
+    userTest.setRole("ADMIN");
+    userService.save(userTest);
 
-  int id = userService.findByUsername("Geff").getId();
-
-
-  MvcResult result = this.mockMvc.perform(get("/user/delete/"+id)
-          .with(user("Geff").roles("ADMIN"))
-          .with(csrf())
-          .contentType(MediaType.APPLICATION_JSON))
-          .andExpect(status().is(302))
-          .andExpect(redirectedUrl("/user/list"))
-          .andReturn();
-
-  assertNull(userService.findByUsername("Geff"));
-  assertNull(result.getResponse().getErrorMessage());
+    int id = userService.findByUsername("Geff").getId();
 
 
+    MvcResult result = this.mockMvc.perform(get("/user/delete/" + id)
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("/user/list"))
+            .andReturn();
 
-}
+    assertNull(userService.findByUsername("Geff"));
+    assertNull(result.getResponse().getErrorMessage());
 
+
+  }
 
 
 }

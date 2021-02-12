@@ -1,11 +1,8 @@
-package com.nnk.springboot.ittest;
+package com.nnk.springboot.itTests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.domain.User;
-import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.BidListService;
-import com.nnk.springboot.services.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +17,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
@@ -69,7 +65,7 @@ public class BidListIT {
             .andExpect(status().is(302))
             .andExpect(redirectedUrl("/bidList/list"))
             .andReturn();
-BidList savedBidList = bidListService.findAll().get(0);
+    BidList savedBidList = bidListService.findAll().get(0);
     assertEquals(savedBidList.getAccount(), "account");
     assertEquals(savedBidList.getType(), "type");
     Assertions.assertNull(result.getResponse().getErrorMessage());
@@ -101,10 +97,13 @@ BidList savedBidList = bidListService.findAll().get(0);
   }
 
 
-
   @Test
   void getBidList() throws Exception {
-
+    BidList bidList = new BidList();
+    bidList.setAccount("Baccount");
+    bidList.setType("Btype");
+    bidList.setBidQuantity(20.1);
+    bidListService.save(bidList);
     MvcResult mvcResult = this.mockMvc.perform(get("/bidList/list").with(user("Geff").roles(
             "ADMIN"))
             .with(csrf())
@@ -112,8 +111,11 @@ BidList savedBidList = bidListService.findAll().get(0);
             .andExpect(status().is(200))
             .andReturn();
 
-    assertTrue(bidListService.findAll().isEmpty());
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Baccount"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Btype"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("20.1"));
 
+    bidListService.delete(bidListService.findAll().get(0));
 
 
   }
@@ -129,7 +131,7 @@ BidList savedBidList = bidListService.findAll().get(0);
     BidList updated = bidListService.findAll().get(0);
     updated.setAccount("updated");
 
-    MvcResult result = this.mockMvc.perform(post("/bidList/update/"+updated.getId())
+    MvcResult result = this.mockMvc.perform(post("/bidList/update/" + updated.getId())
             .flashAttr("bidList", updated)
             .content(objectMapper.writeValueAsString(updated))
             .with(user("Geff").roles("ADMIN"))
@@ -144,7 +146,19 @@ BidList savedBidList = bidListService.findAll().get(0);
 
 
     // ReSet to original values
-   bidListService.delete(updated);
+    bidListService.delete(updated);
+
+  }
+
+  @Test
+  void bidListUpdateFail() throws Exception {
+
+    this.mockMvc.perform(get("/bidList/update/{id}}",1)
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(400))
+            .andReturn();
 
   }
 
@@ -161,7 +175,7 @@ BidList savedBidList = bidListService.findAll().get(0);
     int id = bidListService.findAll().get(0).getId();
 
 
-    MvcResult result = this.mockMvc.perform(get("/bidList/delete/"+id)
+    MvcResult result = this.mockMvc.perform(get("/bidList/delete/" + id)
             .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
@@ -173,9 +187,7 @@ BidList savedBidList = bidListService.findAll().get(0);
     assertNull(result.getResponse().getErrorMessage());
 
 
-
   }
-
 
 
 }
