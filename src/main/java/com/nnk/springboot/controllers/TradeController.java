@@ -53,7 +53,7 @@ public class TradeController {
   }
 
   @GetMapping("/trade/update/{id}")
-   public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+  public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
 
     Trade trade =
             tradeService.findById(id).orElseThrow(() -> new IllegalArgumentException(

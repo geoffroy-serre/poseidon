@@ -1,9 +1,7 @@
 package com.nnk.springboot.itTests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.domain.Trade;
-import com.nnk.springboot.services.RatingService;
 import com.nnk.springboot.services.TradeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -99,7 +97,7 @@ public class TradeIT {
 
     //Deleting user created  for this test using direct call to user Service
 
-   tradeService.deleteAll();
+    tradeService.deleteAll();
 
   }
 
@@ -231,7 +229,7 @@ public class TradeIT {
 
     tradeService.save(trade);
 
-    int id =tradeService.findAll().get(0).getId();
+    int id = tradeService.findAll().get(0).getId();
 
 
     MvcResult result = this.mockMvc.perform(get("/trade/delete/" + id)

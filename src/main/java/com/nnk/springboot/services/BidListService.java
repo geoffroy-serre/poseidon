@@ -15,7 +15,10 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BidListService {
   List<BidList> findAll();
+
   void save(BidList bid);
+
   Optional<BidList> findById(Integer id);
+
   void delete(BidList bid);
 }

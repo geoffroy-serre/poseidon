@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 /**
  * Use Jpa:
- *  List<Rating> findAll();
- *
- *   void save(Rating rating);
- *
- *   Optional<Rating> findById(Integer id);
- *
- *   void delete(Rating rating);
+ * List<Rating> findAll();
+ * <p>
+ * void save(Rating rating);
+ * <p>
+ * Optional<Rating> findById(Integer id);
+ * <p>
+ * void delete(Rating rating);
  */
 @Service
 public interface RatingService {
