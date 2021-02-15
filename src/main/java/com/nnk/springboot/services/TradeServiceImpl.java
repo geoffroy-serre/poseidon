@@ -7,6 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+/**
+ * @inheritDoc
+ */
 @Service
 public class TradeServiceImpl implements TradeService {
 
@@ -31,5 +35,10 @@ public class TradeServiceImpl implements TradeService {
   @Override
   public void delete(Trade trade) {
     tradeRepository.delete(trade);
+  }
+
+  @Override
+  public void deleteAll() {
+    tradeRepository.deleteAll();
   }
 }

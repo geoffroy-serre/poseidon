@@ -211,5 +211,42 @@ public class CurveIT {
 
   }
 
+  @Test
+  void addForm() throws Exception {
+    MvcResult mvcResult = this.mockMvc.perform(get("/curvePoint/add")
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(200))
+            .andReturn();
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Curve Id"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Term"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Bid Quantity"));
+
+  }
+
+  @Test
+  void updateForm() throws Exception {
+    CurvePoint curve = new CurvePoint();
+    curve.setCurveId(50);
+    curve.setValue(22.1);
+    curve.setTerm(15.1);
+    curve.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+    curvePointService.save(curve);
+
+    int id = curvePointService.findAll().get(0).getId();
+    MvcResult mvcResult = this.mockMvc.perform(get("/curvePoint/update/" + id)
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(200))
+            .andReturn();
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Curve Id"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Term"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Bid Quantity"));
+
+    curvePointService.delete(curvePointService.findAll().get(0));
+  }
+
 
 }

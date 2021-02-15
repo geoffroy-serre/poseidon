@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.SecurityService;
+import com.nnk.springboot.services.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,10 @@ public class LoginController {
   @Autowired
   SecurityService securityService;
   @Autowired
-  private UserRepository userRepository;
+  private UserService userService;
 
   @GetMapping("/login")
   public String login(Model model, String error, String logout) {
-
     if (securityService.isAuthenticated()) {
       logger.debug("user redirected to bidList/list");
       return "redirect:bidList/list";
@@ -37,14 +37,14 @@ public class LoginController {
       logger.debug("User logged out " + logout);
       model.addAttribute("message", "You have been logged out successfully.");
     }
-    return "home";
+    return "redirect:/home";
   }
 
 
   @GetMapping("secure/article-details")
   public ModelAndView getAllUserArticles() {
     ModelAndView mav = new ModelAndView();
-    mav.addObject("users", userRepository.findAll());
+    mav.addObject("users", userService.findAll());
     mav.setViewName("user/list");
     return mav;
   }

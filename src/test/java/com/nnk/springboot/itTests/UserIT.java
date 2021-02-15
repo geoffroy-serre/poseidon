@@ -111,7 +111,7 @@ public class UserIT {
     User userTest = new User();
     userTest.setUsername("Geff");
 
-    System.out.println(objectMapper.writeValueAsString(userTest));
+
     MvcResult mvcResult = this.mockMvc.perform(post("/user/validate")
             .flashAttr("user", userTest)
             .with(user("Geff").roles("ADMIN"))
@@ -126,13 +126,42 @@ public class UserIT {
   }
 
   @Test
+  void updateForm() throws Exception {
+
+
+    MvcResult mvcResult = this.mockMvc.perform(get("/user/update/1")
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(200))
+            .andReturn();
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Full Name"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Password"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("User Name"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Role"));
+
+  }
+
+  @Test
+  void addForm() throws Exception {
+
+    MvcResult mvcResult = this.mockMvc.perform(get("/user/add")
+            .with(user("admin").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(200))
+            .andReturn();
+
+  }
+
+  @Test
   void userValidateDontWorkForUser() throws Exception {
 
     User userTest = new User();
     userTest.setUsername("Geff");
     userTest.setRole("ADMIN");
     userTest.setFullname("Geff LeDev");
-    userTest.setPassword("pwd"); //TODO dois etre false quand il y aura les regles de pwd
+    userTest.setPassword("pwd");
     System.out.println(objectMapper.writeValueAsString(userTest));
     this.mockMvc.perform(post("/user/validate").with(user("Geff").roles("USER"))
             .with(csrf())
@@ -184,6 +213,30 @@ public class UserIT {
 
   }
 
+  @Test
+  void userUpdateFail() throws Exception {
+    User admine = userService.findByUsername("admin");
+    admine.setPassword("ImAdmin");
+
+    MvcResult result = this.mockMvc.perform(post("/user/update/1")
+            .flashAttr("user", admine)
+            .content(objectMapper.writeValueAsString(admine))
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("user/update"))
+            .andReturn();
+
+    assertNull(result.getResponse().getErrorMessage());
+
+
+    // ReSet to original values
+    admine.setFullname("Administrator");
+    admine.setPassword("$2y$10$QSs5g5GyZ1rP29Lvz2iCOuULRZFO.jl1kiKj8sgEig8O/E70Ae/WO");
+    userService.save(admine);
+
+  }
 
 
   @Test

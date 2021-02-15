@@ -16,13 +16,12 @@
     <div class="container row-cols-4  d-flex justify-content-center align-items-center ">
         <form action="#" class="form-horizontal" method="post" style="width: 100%"
               th:action="@{/ruleName/validate}" th:object="${ruleName}">
-            <!--
-            TODO: Create a form to input the values of Rating, there are 2 buttons: Save data and Cancel to the list Rating
-             -->
+
             <div class="form-group row-1 justify-content-between ">
-                <label class="col-form-label " for="name">name</label>
+                <label class="col-form-label " for="name">Name</label>
                 <div class="col-13 justify-content-start">
-                    <input class="form-control form-control-sm border justify-self-left " id="name" placeholder="Name"
+                    <input class="form-control form-control-sm border justify-self-left " id="name"
+                           placeholder="Name"
                            th:field="*{name}"
                            type="text">
                     <p class="text-danger" th:errors="*{name}"
@@ -30,9 +29,10 @@
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between">
-                <label class="col-form-label " for="description">description</label>
+                <label class="col-form-label " for="description">Description</label>
                 <div class="col-13 justify-content-end">
-                    <input class="form-control form-control-sm border " id="description" placeholder="description"
+                    <input class="form-control form-control-sm border " id="description"
+                           placeholder="description"
                            th:field="*{description}"
                            type="text">
                     <p class="text-danger" th:errors="*{description}"
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between">
-                <label class="col-form-label " for="json">json</label>
+                <label class="col-form-label " for="json">Json</label>
                 <div class="col-13 justify-content-end">
                     <input class=" form-control form-control-sm border" id="json" placeholder="json"
                            th:field="*{json}" type="text">
@@ -50,9 +50,10 @@
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between">
-                <label class="col-form-label " for="template">template</label>
+                <label class="col-form-label " for="template">Template</label>
                 <div class="col-13 justify-content-end">
-                    <input class=" form-control form-control-sm border" id="template" placeholder="template"
+                    <input class=" form-control form-control-sm border" id="template"
+                           placeholder="template"
                            th:field="*{template}" type="text">
                     <p class="text-danger" th:errors="*{template}"
                        th:if="${#fields.hasErrors('template')}">
@@ -60,9 +61,10 @@
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between">
-                <label class="col-form-label " for="sqlStr">sqlStr</label>
+                <label class="col-form-label " for="sqlStr">SqlStr</label>
                 <div class="col-13 justify-content-end">
-                    <input class=" form-control form-control-sm border" id="sqlStr" placeholder="sqlStr"
+                    <input class=" form-control form-control-sm border" id="sqlStr"
+                           placeholder="sqlStr"
                            th:field="*{sqlStr}" type="text">
                     <p class="text-danger" th:errors="*{sqlStr}"
                        th:if="${#fields.hasErrors('sqlStr')}">
@@ -70,9 +72,10 @@
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between">
-                <label class="col-form-label " for="sqlPart">sqlPart</label>
+                <label class="col-form-label " for="sqlPart">SqlPart</label>
                 <div class="col-13 justify-content-end">
-                    <input class=" form-control form-control-sm border" id="sqlPart" placeholder="sqlPart"
+                    <input class=" form-control form-control-sm border" id="sqlPart"
+                           placeholder="sqlPart"
                            th:field="*{sqlPart}" type="text">
                     <p class="text-danger" th:errors="*{sqlPart}"
                        th:if="${#fields.hasErrors('sqlPart')}">

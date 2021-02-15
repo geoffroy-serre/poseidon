@@ -15,14 +15,13 @@
 
     <div class="container row-cols-4  d-flex justify-content-center align-items-center ">
         <form action="#" class="form-horizontal"
-              method="post" style="width: 100%" th:action="@{/rating/update/{id}(id=${rating.id})}" th:object="${rating}">
-            <!--
-            TODO: Create a form to input the values of Rating, there are 2 buttons: Save data and Cancel to the list Rating
-             -->
+              method="post" style="width: 100%" th:action="@{/rating/update/{id}(id=${rating.id})}"
+              th:object="${rating}">
             <div class="form-group row-1 justify-content-between ">
                 <label class="col-form-label " for="moodysRating">Moody S Rating</label>
                 <div class="col-13 justify-content-start">
-                    <input class="form-control form-control-sm border justify-self-left " id="moodysRating" placeholder="Moody S Rating"
+                    <input class="form-control form-control-sm border justify-self-left "
+                           id="moodysRating" placeholder="Moody S Rating"
                            th:field="*{moodysRating}"
                            type="text">
                     <p class="text-danger" th:errors="*{moodysRating}"
@@ -32,7 +31,8 @@
             <div class="form-group row-1 justify-content-between">
                 <label class="col-form-label " for="sandPRating">sandPRating</label>
                 <div class="col-13 justify-content-end">
-                    <input class="form-control form-control-sm border " id="sandPRating" placeholder="sandPRating"
+                    <input class="form-control form-control-sm border " id="sandPRating"
+                           placeholder="sandPRating"
                            th:field="*{sandPRating}"
                            type="text">
                     <p class="text-danger" th:errors="*{sandPRating}"
@@ -42,7 +42,8 @@
             <div class="form-group row-1 justify-content-between">
                 <label class="col-form-label " for="fitchRating">Fitch Rating</label>
                 <div class="col-13 justify-content-end">
-                    <input class=" form-control form-control-sm border" id="fitchRating" placeholder="fitchRating"
+                    <input class=" form-control form-control-sm border" id="fitchRating"
+                           placeholder="fitchRating"
                            th:field="*{fitchRating}" type="text">
                     <p class="text-danger" th:errors="*{fitchRating}"
                        th:if="${#fields.hasErrors('fitchRating')}">
@@ -52,7 +53,8 @@
             <div class="form-group row-1 justify-content-between">
                 <label class="col-form-label " for="orderNumber">Order Number</label>
                 <div class="col-13 justify-content-end">
-                    <input class=" form-control form-control-sm border" id="orderNumber" placeholder="orderNumber"
+                    <input class=" form-control form-control-sm border" id="orderNumber"
+                           placeholder="orderNumber"
                            th:field="*{orderNumber}" type="number">
                     <p class="text-danger" th:errors="*{orderNumber}"
                        th:if="${#fields.hasErrors('orderNumber')}">

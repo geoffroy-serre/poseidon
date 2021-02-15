@@ -16,13 +16,12 @@
     <div class="container row-cols-4  d-flex justify-content-center align-items-center ">
         <form action="#" class="form-horizontal" method="post" style="width: 100%"
               th:action="@{/trade/validate}" th:object="${trade}">
-            <!--
-            TODO: Create a form to input the values of Trade, there are 2 buttons: Save data and Cancel to the list Trade
-             -->
+
             <div class="form-group row-1 justify-content-between ">
-                <label class="col-form-label " for="account">account</label>
+                <label class="col-form-label " for="account">Account</label>
                 <div class="col-13 justify-content-start">
-                    <input class="form-control form-control-sm border justify-self-left " id="account" placeholder="account"
+                    <input class="form-control form-control-sm border justify-self-left "
+                           id="account" placeholder="account"
                            th:field="*{account}"
                            type="text">
                     <p class="text-danger" th:errors="*{account}"
@@ -30,18 +29,20 @@
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between">
-                <label class="col-form-label " for="type">type</label>
+                <label class="col-form-label " for="type">Type</label>
                 <div class="col-13 justify-content-end">
-                    <input class="form-control form-control-sm border " id="type" placeholder="type" th:field="*{type}"
+                    <input class="form-control form-control-sm border " id="type" placeholder="type"
+                           th:field="*{type}"
                            type="text">
                     <p class="text-danger" th:errors="*{type}"
                        th:if="${#fields.hasErrors('type')}"></p>
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between">
-                <label class="col-form-label " for="buyQuantity">buyQuantity</label>
+                <label class="col-form-label " for="buyQuantity">Buy Quantity</label>
                 <div class="col-13 justify-content-end">
-                    <input class=" form-control form-control-sm border" id="buyQuantity" placeholder="buyQuantity"
+                    <input class=" form-control form-control-sm border" id="buyQuantity"
+                           placeholder="buyQuantity"
                            th:field="*{buyQuantity}" type="number">
                     <p class="text-danger" th:errors="*{buyQuantity}"
                        th:if="${#fields.hasErrors('buyQuantity')}">

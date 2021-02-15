@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +38,8 @@ public class RatingController {
   }
 
   @PostMapping("/rating/validate")
+  @Transactional
   public String validate(@Valid Rating rating, BindingResult result, Model model) {
-    // TODO: check data valid and save to db, after saving return Rating list
     if (!result.hasErrors()) {
       ratingService.save(rating);
       logger.debug("rate validated");
@@ -61,6 +62,7 @@ public class RatingController {
   }
 
   @PostMapping("/rating/update/{id}")
+  @Transactional
   public String updateRating(@PathVariable("id") Integer id, @Valid Rating rating,
                              BindingResult result, Model model) {
 
@@ -75,8 +77,8 @@ public class RatingController {
   }
 
   @GetMapping("/rating/delete/{id}")
+  @Transactional
   public String deleteRating(@PathVariable("id") Integer id, Model model) {
-    // TODO: Find Rating by Id and delete the Rating, return to Rating list
     Rating rating =
             ratingService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                     "Invalid Rating id: " + id));

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class RuleNameController {
   }
 
   @PostMapping("/ruleName/validate")
+  @Transactional
   public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
 
     if (!result.hasErrors()) {
@@ -60,6 +62,7 @@ public class RuleNameController {
   }
 
   @PostMapping("/ruleName/update/{id}")
+  @Transactional
   public String updateRuleName(@PathVariable("id") Integer id, @Valid RuleName ruleName,
                                BindingResult result, Model model) {
 
@@ -74,6 +77,7 @@ public class RuleNameController {
   }
 
   @GetMapping("/ruleName/delete/{id}")
+  @Transactional
   public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
 
     ruleNameService.deleteById(id);

@@ -18,13 +18,11 @@
         <form action="#" class="form-horizontal"
               method="post" style="width: 100%"
               th:action="@{/curvePoint/update/{id}(id=${curvePoint.id})}" th:object="${curvePoint}">
-            <!--
-            TODO: Create a form to input the values of CurvePoint, there are 2 buttons: Save data and Cancel to the list CurvePoint
-             -->
             <div class="form-group row-1 justify-content-between ">
                 <label class="col-form-label " for="curveId">Curve Id</label>
                 <div class="col-13 justify-content-start">
-                    <input class="form-control form-control-sm border justify-self-left " id="curveId" placeholder="Curve Id" th:field="*{curveId}"
+                    <input class="form-control form-control-sm border justify-self-left "
+                           id="curveId" placeholder="Curve Id" th:field="*{curveId}"
                            type="text">
                     <p class="text-danger" th:errors="*{curveId}"
                        th:if="${#fields.hasErrors('curveId')}"></p>
@@ -33,7 +31,8 @@
             <div class="form-group row-1 justify-content-between">
                 <label class="col-form-label " for="term">Term</label>
                 <div class="col-13 justify-content-end">
-                    <input class="form-control form-control-sm border " id="term" placeholder="Type" th:field="*{term}"
+                    <input class="form-control form-control-sm border " id="term" placeholder="Type"
+                           th:field="*{term}"
                            type="text">
                     <p class="text-danger" th:errors="*{term}"
                        th:if="${#fields.hasErrors('term')}"></p>
@@ -42,7 +41,8 @@
             <div class="form-group row-1 justify-content-between">
                 <label class="col-form-label " for="value">Bid Quantity</label>
                 <div class="col-13 justify-content-end">
-                    <input class=" form-control form-control-sm border" id="value" placeholder="Value" step="0.1"
+                    <input class=" form-control form-control-sm border" id="value"
+                           placeholder="Value" step="0.1"
                            th:field="*{value}" type="number">
                     <p class="text-danger" th:errors="*{value}"
                        th:if="${#fields.hasErrors('value')}">

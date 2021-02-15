@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,12 +40,13 @@ public class UserController {
   }
 
   @PostMapping("/user/validate")
+  @Transactional
   public String validate(@Valid User user, BindingResult result, Model model) {
     if (!result.hasErrors() && PASSWORD.matcher(user.getPassword()).matches()) {
       BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
       user.setPassword(encoder.encode(user.getPassword()));
       userService.save(user);
-      model.addAttribute("users", userService.findAll());
+      //model.addAttribute("users", userService.findAll());
       logger.debug("User validated ");
       return "redirect:/user/list";
     }
@@ -63,12 +65,13 @@ public class UserController {
   }
 
   @PostMapping("/user/update/{id}")
+  @Transactional
   public String updateUser(@PathVariable("id") Integer id, @Valid User user,
                            BindingResult result, Model model) {
     userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id " + id));
     if (result.hasErrors() || !PASSWORD.matcher(user.getPassword()).matches()) {
       logger.debug("User not updated id: " + id + " " + result.getAllErrors().toString());
-      return "user/update";
+      return "redirect:user/update";
     }
 
 
@@ -82,6 +85,7 @@ public class UserController {
   }
 
   @GetMapping("/user/delete/{id}")
+  @Transactional
   public String deleteUser(@PathVariable("id") Integer id, Model model) {
     userService.deleteById(id);
     model.addAttribute("users", userService.findAll());

@@ -25,7 +25,8 @@
             <div class="form-group row-1 justify-content-between  ">
                 <label class="col-form-label " for="fullname">Full Name</label>
                 <div class="col-13 justify-content-start">
-                    <input class="form-control form-control-sm border justify-self-left " id="fullname" placeholder="Full Name" th:field="*{fullname}"
+                    <input class="form-control form-control-sm border justify-self-left "
+                           id="fullname" placeholder="Full Name" th:field="*{fullname}"
                            type="text">
                     <p class="text-danger" th:errors="*{fullname}"
                        th:if="${#fields.hasErrors('fullname')}"></p>
@@ -34,7 +35,8 @@
             <div class="form-group row-1 justify-content-between ">
                 <label class="col-form-label " for="username">User Name</label>
                 <div class="col-13 justify-content-end">
-                    <input class="form-control form-control-sm border " id="username" placeholder="User Name" th:field="*{username}"
+                    <input class="form-control form-control-sm border " id="username"
+                           placeholder="User Name" th:field="*{username}"
                            type="text">
                     <p class="text-danger" th:errors="*{username}"
                        th:if="${#fields.hasErrors('username')}"></p>
@@ -43,7 +45,8 @@
             <div class="form-group row-1 justify-content-between">
                 <label class="col-form-label " for="password">Password</label>
                 <div class="col-13 justify-content-end">
-                    <input class="form-control form-control-sm border " id="password" placeholder="Password"
+                    <input class="form-control form-control-sm border " id="password"
+                           placeholder="Password"
                            th:field="*{password}" type="password">
                     <p class="text-danger" th:errors="*{password}"
                        th:if="${#fields.hasErrors('password')}"></p>

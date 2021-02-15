@@ -123,6 +123,15 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.5</version>
+                <configuration>
+                <excludes>
+                    <exclude>com/nnk/springboot/config/*</exclude>
+                    <exclude>com/nnk/springboot/services/SecurityServiceImpl.class</exclude>
+                    <exclude>com/nnk/springboot/services/UserDetailsServiceImpl.class</exclude>
+                    <exclude>com/nnk/springboot/controllers/LoginController.class</exclude>
+                    <exclude>com/nnk/springboot/controllers/HomeController.class</exclude>
+                </excludes>
+            </configuration>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -137,6 +146,7 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+
                 </executions>
             </plugin>
         </plugins>

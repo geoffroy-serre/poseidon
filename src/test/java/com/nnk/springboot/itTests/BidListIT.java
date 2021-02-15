@@ -80,16 +80,16 @@ public class BidListIT {
   void bidListValidateForAdminNotValid() throws Exception {
 
     BidList bidList = new BidList();
-    bidList.setAccount("account");
+    //bidList.setAccount("account");
 
     System.out.println(objectMapper.writeValueAsString(bidList));
-    MvcResult mvcResult = this.mockMvc.perform(post("/user/validate")
+    MvcResult mvcResult = this.mockMvc.perform(post("/bidList/validate")
             .flashAttr("bidList", bidList)
             .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(302))
-            .andExpect(redirectedUrl("/user/add"))
+            .andExpect(redirectedUrl("bidList/add"))
             .andReturn();
 
     Assertions.assertTrue(bidListService.findAll().isEmpty());
@@ -153,7 +153,7 @@ public class BidListIT {
   @Test
   void bidListUpdateFail() throws Exception {
 
-    this.mockMvc.perform(get("/bidList/update/{id}}",1)
+    this.mockMvc.perform(get("/bidList/update/{id}}", 1)
             .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
@@ -189,5 +189,67 @@ public class BidListIT {
 
   }
 
+  @Test
+  void addForm() throws Exception {
+    MvcResult mvcResult = this.mockMvc.perform(get("/bidList/add")
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(200))
+            .andReturn();
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Account"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Type"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Bid Quantity"));
+
+  }
+
+  @Test
+  void UpdateForm() throws Exception {
+    BidList bidList = new BidList();
+    bidList.setAccount("account");
+    bidList.setType("type");
+    bidList.setBidQuantity(20.1);
+    bidListService.save(bidList);
+
+    int id = bidListService.findAll().get(0).getId();
+    MvcResult mvcResult = this.mockMvc.perform(get("/bidList/update/" + id)
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(200))
+            .andReturn();
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Account"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Type"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("Bid Quantity"));
+
+    bidListService.delete(bidListService.findById(id).get());
+  }
+
+  @Test
+  void UpdateFail() throws Exception {
+    BidList bidList = new BidList();
+    bidList.setAccount("Baccount");
+    bidList.setType("Btype");
+    bidList.setBidQuantity(20.1);
+    bidList.setId(1);
+
+
+    MvcResult result = this.mockMvc.perform(post("/bidList/update/1")
+            .flashAttr("bidList", bidList)
+            .content(objectMapper.writeValueAsString(bidList))
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("/bidList/list"))
+            .andReturn();
+
+    assertTrue(bidListService.findAll().isEmpty());
+
+
+    // ReSet to original values
+    bidListService.delete(bidList);
+
+  }
 
 }

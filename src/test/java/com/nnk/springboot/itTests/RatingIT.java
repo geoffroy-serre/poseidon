@@ -2,10 +2,7 @@ package com.nnk.springboot.itTests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.domain.Rating;
-import com.nnk.springboot.domain.User;
-import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.RatingService;
-import com.nnk.springboot.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -67,7 +64,7 @@ public class RatingIT {
             .andExpect(status().is(302))
             .andExpect(redirectedUrl("/rating/list"))
             .andReturn();
-int id = ratingService.findAll().get(0).getId();
+    int id = ratingService.findAll().get(0).getId();
     assertEquals(ratingService.findById(id).get().getFitchRating(), "fitch");
     assertEquals(ratingService.findById(id).get().getMoodysRating(), "moodys");
     assertEquals(ratingService.findById(id).get().getSandPRating(), "sand");
@@ -82,7 +79,43 @@ int id = ratingService.findAll().get(0).getId();
   }
 
 
+  @Test
+  void addForm() throws Exception {
+    MvcResult mvcResult = this.mockMvc.perform(get("/rating/add")
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(200))
+            .andReturn();
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("fitch"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("moodys"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("sand"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("order"));
+  }
 
+  @Test
+  void UpdateForm() throws Exception {
+    Rating ratingTest = new Rating();
+    ratingTest.setFitchRating("fitch");
+    ratingTest.setMoodysRating("moodys");
+    ratingTest.setSandPRating("sand");
+    ratingTest.setOrderNumber(10);
+    ratingService.save(ratingTest);
+
+    int id = ratingService.findAll().get(0).getId();
+    MvcResult mvcResult = this.mockMvc.perform(get("/rating/update/" + id)
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(200))
+            .andReturn();
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("fitch"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("moodys"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("sand"));
+    assertTrue(mvcResult.getResponse().getContentAsString().contains("order"));
+
+    ratingService.delete(ratingService.findAll().get(0));
+  }
 
 
   @Test
@@ -104,6 +137,7 @@ int id = ratingService.findAll().get(0).getId();
     assertTrue(mvcResult.getResponse().getContentAsString().contains("sand"));
     assertTrue(mvcResult.getResponse().getContentAsString().contains("10"));
 
+    ratingService.delete(ratingService.findAll().get(0));
 
   }
 
@@ -120,7 +154,7 @@ int id = ratingService.findAll().get(0).getId();
     Rating updated = ratingService.findById(id).get();
     updated.setFitchRating("feetch");
 
-    MvcResult result = this.mockMvc.perform(post("/rating/update/"+id)
+    MvcResult result = this.mockMvc.perform(post("/rating/update/" + id)
             .flashAttr("rating", updated)
             .content(objectMapper.writeValueAsString(updated))
             .with(user("Geff").roles("ADMIN"))
@@ -139,6 +173,33 @@ int id = ratingService.findAll().get(0).getId();
 
   }
 
+  @Test
+  void ratingUpdateFail() throws Exception {
+    Rating ratingTest = new Rating();
+    ratingTest.setFitchRating("fitch");
+    ratingTest.setMoodysRating("moodys");
+    ratingTest.setSandPRating("sand");
+    ratingTest.setOrderNumber(10);
+    ratingTest.setId(1);
+
+
+    MvcResult result = this.mockMvc.perform(post("/rating/update/5")
+            .flashAttr("rating", ratingTest)
+            .content(objectMapper.writeValueAsString(ratingTest))
+            .with(user("Geff").roles("ADMIN"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is(302))
+            .andExpect(redirectedUrl("/rating/list"))
+            .andReturn();
+
+    assertTrue(ratingService.findAll().isEmpty());
+
+
+    // ReSet to original values
+    ratingService.delete(ratingTest);
+
+  }
 
 
   @Test

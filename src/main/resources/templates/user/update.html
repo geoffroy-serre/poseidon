@@ -15,11 +15,13 @@
 
     <div class="row">
         <form action="#" class="form-horizontal" method="post"
-              style="width: 100%" th:action="@{/user/update/{id}(id=${user.id})}" th:object="${user}">
+              style="width: 100%" th:action="@{/user/update/{id}(id=${user.id})}"
+              th:object="${user}">
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="fullname">Full Name</label>
                 <div class="col-sm-10">
-                    <input class="col-4" id="fullname" placeholder="Full Name" th:field="*{fullname}"
+                    <input class="col-4" id="fullname" placeholder="Full Name"
+                           th:field="*{fullname}"
                            type="text">
                     <p class="text-danger" th:errors="*{fullname}"
                        th:if="${#fields.hasErrors('fullname')}"></p>
@@ -28,7 +30,8 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="username">User Name</label>
                 <div class="col-sm-10">
-                    <input class="col-4" id="username" placeholder="User Name" th:field="*{username}"
+                    <input class="col-4" id="username" placeholder="User Name"
+                           th:field="*{username}"
                            type="text">
                     <p class="text-danger" th:errors="*{username}"
                        th:if="${#fields.hasErrors('username')}"></p>

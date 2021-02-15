@@ -36,15 +36,15 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>json</th>
-                <th>template</th>
-                <th>sqlStr</th>
-                <th>sqlPart</th>
+                <th>Json</th>
+                <th>Template</th>
+                <th>SqlStr</th>
+                <th>SqlPart</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <!-- TODO: Show all RuleName to the table, the Action column will have Edit & Delete buttons -->
+
             <tr th:each="ruleName : ${ruleNames}">
                 <td style="width: 10%" th:text="${ruleName.id}"></td>
                 <td th:text="${ruleName.name}"></td>
