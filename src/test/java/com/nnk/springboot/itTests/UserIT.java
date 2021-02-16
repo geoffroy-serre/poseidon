@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.UserService;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -55,7 +52,7 @@ public class UserIT {
 
 
   @Test
- @WithMockUser(username = "admin", authorities = { "ADMIN"})
+  @WithMockUser(username = "admin", authorities = {"ADMIN"})
   void userValidateWorkForAdmin() throws Exception {
 
     User userTest = new User();
@@ -85,7 +82,7 @@ public class UserIT {
   }
 
   @Test
-  @WithMockUser(username = "admin", authorities = { "ADMIN"})
+  @WithMockUser(username = "admin", authorities = {"ADMIN"})
   void userValidatePwdErrorForAdmin() throws Exception {
 
     User userTest = new User();
@@ -110,7 +107,7 @@ public class UserIT {
   }
 
   @Test
-  @WithMockUser(username = "admin", authorities = { "ADMIN"})
+  @WithMockUser(username = "admin", authorities = {"ADMIN"})
   void userValidateForAdminNotValid() throws Exception {
 
     User userTest = new User();

@@ -3,7 +3,6 @@ package com.nnk.springboot.domain;
 import java.sql.Timestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.*;
 
