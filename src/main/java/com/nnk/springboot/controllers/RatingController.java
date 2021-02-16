@@ -73,7 +73,7 @@ public class RatingController {
       return "redirect:/rating/list";
     }
     logger.debug("rating not updated for id: " + id + " " + result.getAllErrors().toString());
-    return "redirect:/rating/list";
+    return "rating/list";
   }
 
   @GetMapping("/rating/delete/{id}")

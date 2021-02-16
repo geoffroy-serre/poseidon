@@ -88,8 +88,7 @@ public class BidListIT {
             .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().is(302))
-            .andExpect(redirectedUrl("bidList/add"))
+            .andExpect(status().is(200))
             .andReturn();
 
     Assertions.assertTrue(bidListService.findAll().isEmpty());

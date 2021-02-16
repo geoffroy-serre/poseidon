@@ -504,3 +504,173 @@
 2021-02-16 15:59:45,344 DEBUG com.nnk.springboot.controllers.UserController [main] User updated id: 1 []
 2021-02-16 15:59:45,369 DEBUG com.nnk.springboot.controllers.UserController [main] User deleted id: 139
 2021-02-16 15:59:45,376 DEBUG com.nnk.springboot.controllers.UserController [main] User list displayed
+2021-02-16 16:02:20,424 DEBUG com.nnk.springboot.controllers.HomeController [http-nio-8080-exec-2] User redirected to home
+2021-02-16 16:02:27,918 DEBUG org.springframework.security.web.authentication.session.ChangeSessionIdAuthenticationStrategy [http-nio-8080-exec-5] Changed session id from 65FA1671174E0E09D5872C44D25473DD
+2021-02-16 16:02:27,933 DEBUG com.nnk.springboot.controllers.BidListController [http-nio-8080-exec-6] bidList displayed
+2021-02-16 16:02:30,399 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-8] curve list displayed
+2021-02-16 16:02:31,463 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-10] curve add displayed
+2021-02-16 16:02:32,541 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-4] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:02:32,547 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-3] curve add displayed
+2021-02-16 16:02:33,694 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-7] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:02:33,700 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-8] curve add displayed
+2021-02-16 16:03:01,407 DEBUG com.nnk.springboot.controllers.HomeController [http-nio-8080-exec-2] User redirected to home
+2021-02-16 16:03:08,299 DEBUG org.springframework.security.web.authentication.session.ChangeSessionIdAuthenticationStrategy [http-nio-8080-exec-5] Changed session id from 903C04A83D65D8A34D0D75CC4D09FB67
+2021-02-16 16:03:08,312 DEBUG com.nnk.springboot.controllers.BidListController [http-nio-8080-exec-6] bidList displayed
+2021-02-16 16:03:10,022 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-8] curve list displayed
+2021-02-16 16:03:10,892 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-10] curve add displayed
+2021-02-16 16:03:12,199 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-4] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:03:12,205 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-3] curve add displayed
+2021-02-16 16:03:13,051 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-7] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:03:13,054 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-8] curve add displayed
+2021-02-16 16:03:46,404 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-1] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:03:46,410 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-2] curve add displayed
+2021-02-16 16:03:48,769 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-5] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:03:48,773 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-7] curve add displayed
+2021-02-16 16:11:05,162 DEBUG com.nnk.springboot.controllers.HomeController [http-nio-8080-exec-2] User redirected to home
+2021-02-16 16:11:11,047 DEBUG org.springframework.security.web.authentication.session.ChangeSessionIdAuthenticationStrategy [http-nio-8080-exec-5] Changed session id from BBB56CDB0899849BB05BBB919931B3AC
+2021-02-16 16:11:11,061 DEBUG com.nnk.springboot.controllers.BidListController [http-nio-8080-exec-6] bidList displayed
+2021-02-16 16:11:13,118 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-8] curve list displayed
+2021-02-16 16:11:13,950 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-10] curve add displayed
+2021-02-16 16:11:15,279 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-4] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:11:16,937 DEBUG com.nnk.springboot.controllers.CurveController [http-nio-8080-exec-6] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:14:11,355 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName deleted for id: 140
+2021-02-16 16:14:11,386 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName add form displayed 
+2021-02-16 16:14:11,777 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName updated for id: 141
+2021-02-16 16:14:11,870 DEBUG com.nnk.springboot.controllers.RuleNameController [main] rulename list displayed
+2021-02-16 16:14:11,909 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName not updated for id: 1 []
+2021-02-16 16:14:11,980 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleNAme update form sent for id: 143
+2021-02-16 16:14:12,084 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleNAme validated: 
+2021-02-16 16:14:12,110 DEBUG com.nnk.springboot.controllers.TradeController [main] trade add form displayed
+2021-02-16 16:14:12,128 DEBUG com.nnk.springboot.controllers.TradeController [main] trade not validated [Field error in object 'trade' on field 'type': rejected value [null]; codes [NotBlank.trade.type,NotBlank.type,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [trade.type,type]; arguments []; default message [type]]; default message [type can't be empty]]
+2021-02-16 16:14:12,199 DEBUG com.nnk.springboot.controllers.TradeController [main] trade list displayed
+2021-02-16 16:14:12,215 DEBUG com.nnk.springboot.controllers.TradeController [main] trade not updated id: 1 []
+2021-02-16 16:14:12,305 DEBUG com.nnk.springboot.controllers.TradeController [main] trade update form sent for id: 146
+2021-02-16 16:14:12,408 DEBUG com.nnk.springboot.controllers.TradeController [main] trade validated
+2021-02-16 16:14:12,528 DEBUG com.nnk.springboot.controllers.TradeController [main] trade deleted for id: 148
+2021-02-16 16:14:12,631 DEBUG com.nnk.springboot.controllers.TradeController [main] trade updated for id: 149
+2021-02-16 16:14:12,923 DEBUG com.nnk.springboot.controllers.CurveController [main] curve updated for id: 151
+2021-02-16 16:14:12,931 DEBUG com.nnk.springboot.controllers.CurveController [main] curve add displayed
+2021-02-16 16:14:12,996 DEBUG com.nnk.springboot.controllers.CurveController [main] curve deleted for id: 152
+2021-02-16 16:14:13,048 DEBUG com.nnk.springboot.controllers.CurveController [main] curve validated 
+2021-02-16 16:14:13,057 DEBUG com.nnk.springboot.controllers.CurveController [main] curve not updated for Id 1 []
+2021-02-16 16:14:13,171 DEBUG com.nnk.springboot.controllers.CurveController [main] curve update form displayed for id: 154
+2021-02-16 16:14:13,181 DEBUG com.nnk.springboot.controllers.CurveController [main] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:14:13,278 DEBUG com.nnk.springboot.controllers.CurveController [main] curve list displayed
+2021-02-16 16:14:13,524 DEBUG com.nnk.springboot.controllers.BidListController [main] bid not validated: [Field error in object 'bidList' on field 'type': rejected value [null]; codes [NotBlank.bidList.type,NotBlank.type,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bidList.type,type]; arguments []; default message [type]]; default message [Type is mandatory], Field error in object 'bidList' on field 'account': rejected value [null]; codes [NotBlank.bidList.account,NotBlank.account,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bidList.account,account]; arguments []; default message [account]]; default message [Account is mandatory]]
+2021-02-16 16:14:13,539 DEBUG com.nnk.springboot.controllers.BidListController [main] bid add displayed
+2021-02-16 16:14:13,615 DEBUG com.nnk.springboot.controllers.BidListController [main] bid deleted for id: 157
+2021-02-16 16:14:13,709 DEBUG com.nnk.springboot.controllers.BidListController [main] bid validated successfully
+2021-02-16 16:14:13,813 DEBUG com.nnk.springboot.controllers.BidListController [main] bid for id: 159
+2021-02-16 16:14:13,920 DEBUG com.nnk.springboot.controllers.BidListController [main] bidList displayed
+2021-02-16 16:14:13,930 DEBUG com.nnk.springboot.controllers.BidListController [main] bid not updated for id: 1 []
+2021-02-16 16:14:14,029 DEBUG com.nnk.springboot.controllers.BidListController [main] bid update form sent for id: 161
+2021-02-16 16:14:14,365 DEBUG com.nnk.springboot.controllers.RatingController [main] rating add displayed
+2021-02-16 16:14:14,459 DEBUG com.nnk.springboot.controllers.RatingController [main] rate validated
+2021-02-16 16:14:14,600 DEBUG com.nnk.springboot.controllers.RatingController [main] rating updated for id: 166
+2021-02-16 16:14:14,607 DEBUG com.nnk.springboot.controllers.RatingController [main] rating not updated for id: 5 []
+2021-02-16 16:14:14,751 DEBUG com.nnk.springboot.controllers.RatingController [main] rating update form displayed for id: 167
+2021-02-16 16:14:15,054 DEBUG com.nnk.springboot.controllers.RatingController [main] rating deleted for id: 168
+2021-02-16 16:14:15,112 DEBUG com.nnk.springboot.controllers.RatingController [main] rating list displayed
+2021-02-16 16:14:15,292 DEBUG com.nnk.springboot.controllers.UserController [main] User validated 
+2021-02-16 16:14:15,324 DEBUG com.nnk.springboot.controllers.UserController [main] User add form displayed 
+2021-02-16 16:14:15,331 DEBUG com.nnk.springboot.controllers.UserController [main] User not validated [Field error in object 'user' on field 'role': rejected value [null]; codes [NotBlank.user.role,NotBlank.role,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.role,role]; arguments []; default message [role]]; default message [Role must be selected], Field error in object 'user' on field 'fullname': rejected value [null]; codes [NotBlank.user.fullname,NotBlank.fullname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.fullname,fullname]; arguments []; default message [fullname]]; default message [Full Name can't be empty], Field error in object 'user' on field 'password': rejected value [null]; codes [NotBlank.user.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password]]; default message [Password can't be empty]]
+2021-02-16 16:14:15,340 DEBUG com.nnk.springboot.controllers.UserController [main] User update form displayd for id: 1
+2021-02-16 16:14:15,350 DEBUG com.nnk.springboot.controllers.UserController [main] User not validated []
+2021-02-16 16:14:15,358 DEBUG com.nnk.springboot.controllers.UserController [main] User not updated id: 1 []
+2021-02-16 16:14:15,426 DEBUG com.nnk.springboot.controllers.UserController [main] User updated id: 1 []
+2021-02-16 16:14:15,488 DEBUG com.nnk.springboot.controllers.UserController [main] User deleted id: 171
+2021-02-16 16:14:15,493 DEBUG com.nnk.springboot.controllers.UserController [main] User list displayed
+2021-02-16 16:15:36,347 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName deleted for id: 172
+2021-02-16 16:15:36,377 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName add form displayed 
+2021-02-16 16:15:37,266 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName updated for id: 173
+2021-02-16 16:15:37,438 DEBUG com.nnk.springboot.controllers.RuleNameController [main] rulename list displayed
+2021-02-16 16:15:37,466 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName not updated for id: 1 []
+2021-02-16 16:15:37,665 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleNAme update form sent for id: 175
+2021-02-16 16:15:37,776 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleNAme validated: 
+2021-02-16 16:15:37,806 DEBUG com.nnk.springboot.controllers.TradeController [main] trade add form displayed
+2021-02-16 16:15:37,826 DEBUG com.nnk.springboot.controllers.TradeController [main] trade not validated [Field error in object 'trade' on field 'type': rejected value [null]; codes [NotBlank.trade.type,NotBlank.type,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [trade.type,type]; arguments []; default message [type]]; default message [type can't be empty]]
+2021-02-16 16:15:37,941 DEBUG com.nnk.springboot.controllers.TradeController [main] trade list displayed
+2021-02-16 16:15:37,959 DEBUG com.nnk.springboot.controllers.TradeController [main] trade not updated id: 1 []
+2021-02-16 16:15:38,107 DEBUG com.nnk.springboot.controllers.TradeController [main] trade update form sent for id: 178
+2021-02-16 16:15:38,217 DEBUG com.nnk.springboot.controllers.TradeController [main] trade validated
+2021-02-16 16:15:38,329 DEBUG com.nnk.springboot.controllers.TradeController [main] trade deleted for id: 180
+2021-02-16 16:15:38,432 DEBUG com.nnk.springboot.controllers.TradeController [main] trade updated for id: 181
+2021-02-16 16:15:38,722 DEBUG com.nnk.springboot.controllers.CurveController [main] curve updated for id: 183
+2021-02-16 16:15:38,730 DEBUG com.nnk.springboot.controllers.CurveController [main] curve add displayed
+2021-02-16 16:15:38,798 DEBUG com.nnk.springboot.controllers.CurveController [main] curve deleted for id: 184
+2021-02-16 16:15:38,893 DEBUG com.nnk.springboot.controllers.CurveController [main] curve validated 
+2021-02-16 16:15:38,901 DEBUG com.nnk.springboot.controllers.CurveController [main] curve not updated for Id 1 []
+2021-02-16 16:15:38,998 DEBUG com.nnk.springboot.controllers.CurveController [main] curve update form displayed for id: 186
+2021-02-16 16:15:39,007 DEBUG com.nnk.springboot.controllers.CurveController [main] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:15:39,096 DEBUG com.nnk.springboot.controllers.CurveController [main] curve list displayed
+2021-02-16 16:15:39,333 DEBUG com.nnk.springboot.controllers.BidListController [main] bid not validated: [Field error in object 'bidList' on field 'type': rejected value [null]; codes [NotBlank.bidList.type,NotBlank.type,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bidList.type,type]; arguments []; default message [type]]; default message [Type is mandatory], Field error in object 'bidList' on field 'account': rejected value [null]; codes [NotBlank.bidList.account,NotBlank.account,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bidList.account,account]; arguments []; default message [account]]; default message [Account is mandatory]]
+2021-02-16 16:15:39,348 DEBUG com.nnk.springboot.controllers.BidListController [main] bid add displayed
+2021-02-16 16:15:39,467 DEBUG com.nnk.springboot.controllers.BidListController [main] bid deleted for id: 189
+2021-02-16 16:15:39,526 DEBUG com.nnk.springboot.controllers.BidListController [main] bid validated successfully
+2021-02-16 16:15:39,632 DEBUG com.nnk.springboot.controllers.BidListController [main] bid for id: 191
+2021-02-16 16:15:39,730 DEBUG com.nnk.springboot.controllers.BidListController [main] bidList displayed
+2021-02-16 16:15:39,741 DEBUG com.nnk.springboot.controllers.BidListController [main] bid not updated for id: 1 []
+2021-02-16 16:15:39,839 DEBUG com.nnk.springboot.controllers.BidListController [main] bid update form sent for id: 193
+2021-02-16 16:15:40,167 DEBUG com.nnk.springboot.controllers.RatingController [main] rating add displayed
+2021-02-16 16:15:40,260 DEBUG com.nnk.springboot.controllers.RatingController [main] rate validated
+2021-02-16 16:15:40,373 DEBUG com.nnk.springboot.controllers.RatingController [main] rating updated for id: 198
+2021-02-16 16:15:40,380 DEBUG com.nnk.springboot.controllers.RatingController [main] rating not updated for id: 5 []
+2021-02-16 16:15:40,481 DEBUG com.nnk.springboot.controllers.RatingController [main] rating update form displayed for id: 199
+2021-02-16 16:15:40,631 DEBUG com.nnk.springboot.controllers.RatingController [main] rating deleted for id: 200
+2021-02-16 16:15:40,730 DEBUG com.nnk.springboot.controllers.RatingController [main] rating list displayed
+2021-02-16 16:15:40,868 DEBUG com.nnk.springboot.controllers.UserController [main] User validated 
+2021-02-16 16:15:40,901 DEBUG com.nnk.springboot.controllers.UserController [main] User add form displayed 
+2021-02-16 16:15:40,908 DEBUG com.nnk.springboot.controllers.UserController [main] User not validated [Field error in object 'user' on field 'password': rejected value [null]; codes [NotBlank.user.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password]]; default message [Password can't be empty], Field error in object 'user' on field 'role': rejected value [null]; codes [NotBlank.user.role,NotBlank.role,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.role,role]; arguments []; default message [role]]; default message [Role must be selected], Field error in object 'user' on field 'fullname': rejected value [null]; codes [NotBlank.user.fullname,NotBlank.fullname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.fullname,fullname]; arguments []; default message [fullname]]; default message [Full Name can't be empty]]
+2021-02-16 16:15:40,918 DEBUG com.nnk.springboot.controllers.UserController [main] User update form displayd for id: 1
+2021-02-16 16:15:40,928 DEBUG com.nnk.springboot.controllers.UserController [main] User not validated []
+2021-02-16 16:15:40,937 DEBUG com.nnk.springboot.controllers.UserController [main] User not updated id: 1 []
+2021-02-16 16:15:41,006 DEBUG com.nnk.springboot.controllers.UserController [main] User updated id: 1 []
+2021-02-16 16:15:41,115 DEBUG com.nnk.springboot.controllers.UserController [main] User deleted id: 203
+2021-02-16 16:15:41,120 DEBUG com.nnk.springboot.controllers.UserController [main] User list displayed
+2021-02-16 16:16:38,502 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName deleted for id: 204
+2021-02-16 16:16:38,531 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName add form displayed 
+2021-02-16 16:16:38,915 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName updated for id: 205
+2021-02-16 16:16:38,984 DEBUG com.nnk.springboot.controllers.RuleNameController [main] rulename list displayed
+2021-02-16 16:16:39,013 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleName not updated for id: 1 []
+2021-02-16 16:16:39,096 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleNAme update form sent for id: 207
+2021-02-16 16:16:39,197 DEBUG com.nnk.springboot.controllers.RuleNameController [main] ruleNAme validated: 
+2021-02-16 16:16:39,227 DEBUG com.nnk.springboot.controllers.TradeController [main] trade add form displayed
+2021-02-16 16:16:39,245 DEBUG com.nnk.springboot.controllers.TradeController [main] trade not validated [Field error in object 'trade' on field 'type': rejected value [null]; codes [NotBlank.trade.type,NotBlank.type,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [trade.type,type]; arguments []; default message [type]]; default message [type can't be empty]]
+2021-02-16 16:16:39,363 DEBUG com.nnk.springboot.controllers.TradeController [main] trade list displayed
+2021-02-16 16:16:39,381 DEBUG com.nnk.springboot.controllers.TradeController [main] trade not updated id: 1 []
+2021-02-16 16:16:39,477 DEBUG com.nnk.springboot.controllers.TradeController [main] trade update form sent for id: 210
+2021-02-16 16:16:39,548 DEBUG com.nnk.springboot.controllers.TradeController [main] trade validated
+2021-02-16 16:16:39,658 DEBUG com.nnk.springboot.controllers.TradeController [main] trade deleted for id: 212
+2021-02-16 16:16:39,754 DEBUG com.nnk.springboot.controllers.TradeController [main] trade updated for id: 213
+2021-02-16 16:16:40,028 DEBUG com.nnk.springboot.controllers.CurveController [main] curve updated for id: 215
+2021-02-16 16:16:40,037 DEBUG com.nnk.springboot.controllers.CurveController [main] curve add displayed
+2021-02-16 16:16:40,152 DEBUG com.nnk.springboot.controllers.CurveController [main] curve deleted for id: 216
+2021-02-16 16:16:40,204 DEBUG com.nnk.springboot.controllers.CurveController [main] curve validated 
+2021-02-16 16:16:40,213 DEBUG com.nnk.springboot.controllers.CurveController [main] curve not updated for Id 1 []
+2021-02-16 16:16:40,310 DEBUG com.nnk.springboot.controllers.CurveController [main] curve update form displayed for id: 218
+2021-02-16 16:16:40,320 DEBUG com.nnk.springboot.controllers.CurveController [main] curve not validated [Field error in object 'curvePoint' on field 'curveId': rejected value [null]; codes [NotNull.curvePoint.curveId,NotNull.curveId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [curvePoint.curveId,curveId]; arguments []; default message [curveId]]; default message [CurveID is mandatory]]
+2021-02-16 16:16:40,409 DEBUG com.nnk.springboot.controllers.CurveController [main] curve list displayed
+2021-02-16 16:16:40,643 DEBUG com.nnk.springboot.controllers.BidListController [main] bid not validated: [Field error in object 'bidList' on field 'type': rejected value [null]; codes [NotBlank.bidList.type,NotBlank.type,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bidList.type,type]; arguments []; default message [type]]; default message [Type is mandatory], Field error in object 'bidList' on field 'account': rejected value [null]; codes [NotBlank.bidList.account,NotBlank.account,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bidList.account,account]; arguments []; default message [account]]; default message [Account is mandatory]]
+2021-02-16 16:16:40,659 DEBUG com.nnk.springboot.controllers.BidListController [main] bid add displayed
+2021-02-16 16:16:40,721 DEBUG com.nnk.springboot.controllers.BidListController [main] bid deleted for id: 221
+2021-02-16 16:16:40,814 DEBUG com.nnk.springboot.controllers.BidListController [main] bid validated successfully
+2021-02-16 16:16:40,878 DEBUG com.nnk.springboot.controllers.BidListController [main] bid for id: 223
+2021-02-16 16:16:40,993 DEBUG com.nnk.springboot.controllers.BidListController [main] bidList displayed
+2021-02-16 16:16:41,004 DEBUG com.nnk.springboot.controllers.BidListController [main] bid not updated for id: 1 []
+2021-02-16 16:16:41,059 DEBUG com.nnk.springboot.controllers.BidListController [main] bid update form sent for id: 225
+2021-02-16 16:16:41,373 DEBUG com.nnk.springboot.controllers.RatingController [main] rating add displayed
+2021-02-16 16:16:41,464 DEBUG com.nnk.springboot.controllers.RatingController [main] rate validated
+2021-02-16 16:16:41,578 DEBUG com.nnk.springboot.controllers.RatingController [main] rating updated for id: 230
+2021-02-16 16:16:41,585 DEBUG com.nnk.springboot.controllers.RatingController [main] rating not updated for id: 5 []
+2021-02-16 16:16:41,686 DEBUG com.nnk.springboot.controllers.RatingController [main] rating update form displayed for id: 231
+2021-02-16 16:16:41,793 DEBUG com.nnk.springboot.controllers.RatingController [main] rating deleted for id: 232
+2021-02-16 16:16:41,901 DEBUG com.nnk.springboot.controllers.RatingController [main] rating list displayed
+2021-02-16 16:16:42,106 DEBUG com.nnk.springboot.controllers.UserController [main] User validated 
+2021-02-16 16:16:42,138 DEBUG com.nnk.springboot.controllers.UserController [main] User add form displayed 
+2021-02-16 16:16:42,145 DEBUG com.nnk.springboot.controllers.UserController [main] User not validated [Field error in object 'user' on field 'role': rejected value [null]; codes [NotBlank.user.role,NotBlank.role,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.role,role]; arguments []; default message [role]]; default message [Role must be selected], Field error in object 'user' on field 'fullname': rejected value [null]; codes [NotBlank.user.fullname,NotBlank.fullname,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.fullname,fullname]; arguments []; default message [fullname]]; default message [Full Name can't be empty], Field error in object 'user' on field 'password': rejected value [null]; codes [NotBlank.user.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password]]; default message [Password can't be empty]]
+2021-02-16 16:16:42,155 DEBUG com.nnk.springboot.controllers.UserController [main] User update form displayd for id: 1
+2021-02-16 16:16:42,164 DEBUG com.nnk.springboot.controllers.UserController [main] User not validated []
+2021-02-16 16:16:42,173 DEBUG com.nnk.springboot.controllers.UserController [main] User not updated id: 1 []
+2021-02-16 16:16:42,240 DEBUG com.nnk.springboot.controllers.UserController [main] User updated id: 1 []
+2021-02-16 16:16:42,302 DEBUG com.nnk.springboot.controllers.UserController [main] User deleted id: 235
+2021-02-16 16:16:42,308 DEBUG com.nnk.springboot.controllers.UserController [main] User list displayed

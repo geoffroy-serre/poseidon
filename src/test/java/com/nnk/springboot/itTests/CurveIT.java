@@ -94,8 +94,7 @@ public class CurveIT {
             .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().is(302))
-            .andExpect(redirectedUrl("/curvePoint/add"))
+            .andExpect(status().is(200))
             .andReturn();
 
     Assertions.assertTrue(curvePointService.findAll().isEmpty());
@@ -174,8 +173,7 @@ public class CurveIT {
             .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().is(302))
-            .andExpect(redirectedUrl("/curvePoint/list"))
+            .andExpect(status().is(200))
             .andReturn();
 
     assertFalse(curvePointService.findById(curve.getId()).isPresent());

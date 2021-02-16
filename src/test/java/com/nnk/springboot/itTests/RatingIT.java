@@ -189,8 +189,7 @@ public class RatingIT {
             .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().is(302))
-            .andExpect(redirectedUrl("/rating/list"))
+            .andExpect(status().is(200))
             .andReturn();
 
     assertTrue(ratingService.findAll().isEmpty());

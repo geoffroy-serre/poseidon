@@ -49,7 +49,7 @@ public class TradeController {
       return "redirect:/trade/list";
     }
     logger.debug("trade not validated " + result.getAllErrors().toString());
-    return "redirect:/trade/add";
+    return "trade/add";
   }
 
   @GetMapping("/trade/update/{id}")

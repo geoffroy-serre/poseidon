@@ -48,7 +48,7 @@ public class CurveController {
       return "redirect:/curvePoint/list";
     }
     logger.debug("curve not validated " + result.getAllErrors().toString());
-    return "redirect:/curvePoint/add";
+    return "curvePoint/add";
   }
 
   @GetMapping("/curvePoint/update/{id}")
@@ -75,7 +75,7 @@ public class CurveController {
       return "redirect:/curvePoint/list";
     }
     logger.debug("curve not updated for Id " + id + " " + result.getAllErrors().toString());
-    return "redirect:/curvePoint/list";
+    return "curvePoint/list";
   }
 
   @GetMapping("/curvePoint/delete/{id}")

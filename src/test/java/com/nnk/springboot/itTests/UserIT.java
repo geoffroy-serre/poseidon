@@ -100,8 +100,7 @@ public class UserIT {
             .content(objectMapper.writeValueAsString(userTest))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().is(302))
-            .andExpect(redirectedUrl("/user/add"))
+            .andExpect(status().is(200))
             .andReturn();
 
 
@@ -122,8 +121,7 @@ public class UserIT {
             .flashAttr("user", userTest)
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().is(302))
-            .andExpect(redirectedUrl("/user/add"))
+            .andExpect(status().is(200))
             .andReturn();
 
     assertNull(userService.findByUsername("Geff"));

@@ -51,7 +51,7 @@ public class UserController {
       return "redirect:/user/list";
     }
     logger.debug("User not validated " + result.getAllErrors().toString());
-    return "redirect:/user/add";
+    return "user/add";
   }
 
   @GetMapping("/user/update/{id}")

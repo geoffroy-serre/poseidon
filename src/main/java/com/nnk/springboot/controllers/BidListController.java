@@ -49,7 +49,7 @@ public class BidListController {
       return "redirect:/bidList/list";
     }
     logger.debug("bid not validated: " + result.getAllErrors().toString());
-    return "redirect:bidList/add";
+    return "bidList/add";
   }
 
   @GetMapping("/bidList/update/{id}")
