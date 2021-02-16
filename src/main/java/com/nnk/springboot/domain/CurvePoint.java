@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.*;
 
 /**
@@ -23,7 +24,7 @@ public class CurvePoint {
   private Integer id;
 
   @Column(name = "curve_id")
-  @NotBlank(message = "CurveID is mandatory")
+  @NotNull(message = "CurveID is mandatory")
   private Integer curveId;
 
   @Column(name = "as_of_date")

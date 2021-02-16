@@ -17,14 +17,15 @@
     <div class="container row-cols-4  d-flex justify-content-center align-items-center ">
         <form action="#" class="form-horizontal" method="post" style="width: 100%"
               th:action="@{/curvePoint/validate}" th:object="${curvePoint}">
+
             <div class="form-group row-1 justify-content-between ">
                 <label class="col-form-label " for="curveId">Curve Id</label>
                 <div class="col-13 justify-content-start">
                     <input class="form-control form-control-sm border justify-self-left "
                            id="curveId" placeholder="Curve Id" th:field="*{curveId}"
                            type="number">
-                    <p class="text-danger" th:errors="*{curveId}"
-                       th:if="${#fields.hasErrors('curveId')}"></p>
+                    <p class="text-danger" th:if="${#fields.hasErrors('curveId')}"
+                             th:errors="*{curveId}"></p>
                 </div>
             </div>
             <div class="form-group row-1 justify-content-between">

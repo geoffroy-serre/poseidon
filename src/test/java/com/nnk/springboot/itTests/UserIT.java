@@ -4,12 +4,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.UserService;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -38,6 +42,7 @@ public class UserIT {
   UserRepository userRepository;
   @Autowired
   private WebApplicationContext wac;
+
   private MockMvc mockMvc;
 
   @BeforeEach
@@ -48,7 +53,9 @@ public class UserIT {
                     .build();
   }
 
+
   @Test
+ @WithMockUser(username = "admin", authorities = { "ADMIN"})
   void userValidateWorkForAdmin() throws Exception {
 
     User userTest = new User();
@@ -57,11 +64,9 @@ public class UserIT {
     userTest.setFullname("fullName");
     userTest.setRole("ADMIN");
 
-
     MvcResult result = this.mockMvc.perform(post("/user/validate")
             .flashAttr("user", userTest)
             .content(objectMapper.writeValueAsString(userTest))
-            .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(302))
@@ -80,6 +85,7 @@ public class UserIT {
   }
 
   @Test
+  @WithMockUser(username = "admin", authorities = { "ADMIN"})
   void userValidatePwdErrorForAdmin() throws Exception {
 
     User userTest = new User();
@@ -92,7 +98,6 @@ public class UserIT {
     MvcResult result = this.mockMvc.perform(post("/user/validate")
             .flashAttr("user", userTest)
             .content(objectMapper.writeValueAsString(userTest))
-            .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(302))
@@ -106,6 +111,7 @@ public class UserIT {
   }
 
   @Test
+  @WithMockUser(username = "admin", authorities = { "ADMIN"})
   void userValidateForAdminNotValid() throws Exception {
 
     User userTest = new User();
@@ -114,7 +120,6 @@ public class UserIT {
 
     MvcResult mvcResult = this.mockMvc.perform(post("/user/validate")
             .flashAttr("user", userTest)
-            .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(302))

@@ -123,6 +123,8 @@ public class CurveIT {
     assertTrue(mvcResult.getResponse().getContentAsString().contains("22.1"));
     assertTrue(mvcResult.getResponse().getContentAsString().contains("15.1"));
 
+    curvePointService.deleteAll();
+
   }
 
   @Test
