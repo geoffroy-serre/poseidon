@@ -27,7 +27,12 @@
             </form>
         </div>
     </div>
+    <div class="container d-flex flex-column justify-content-center align-items-center vh-100"
+         sec:authorize="hasAuthority('USER')"><h1>You can't have access to this page with USER
+        role</h1></div>
 
+    <div class="container "
+         sec:authorize="hasAuthority('ADMIN')">
     <div class="row"><h2>User List</h2></div>
     <div class="row">
         <a class="btn btn-primary btn-sm" href="/user/add">Add New</a>
@@ -55,6 +60,7 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>
 </body>
 </html>

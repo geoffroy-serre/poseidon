@@ -3,6 +3,7 @@ package com.nnk.springboot.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import lombok.*;
 
 /**
@@ -29,8 +30,11 @@ public class User {
   @NotBlank(message = "Username can't be empty")
   private String username;
 
-  @NotBlank(message = "Password can't be empty")
+
   @Column(name = "password")
+  @NotBlank(message = "Password is mandatory")
+  @Pattern(regexp="(^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,60}$)",message="Password must contains " +
+          "One uppercase, one digit and one symbol and be 8 characters long minimum")
   private String password;
 
   @NotBlank(message = "Full Name can't be empty")

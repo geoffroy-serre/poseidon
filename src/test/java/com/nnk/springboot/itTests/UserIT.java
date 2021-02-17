@@ -126,11 +126,11 @@ public class UserIT {
   }
 
   @Test
+  @WithMockUser(username = "admin", authorities = {"ADMIN"})
   void updateForm() throws Exception {
 
 
     MvcResult mvcResult = this.mockMvc.perform(get("/user/update/1")
-            .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(200))
@@ -143,10 +143,10 @@ public class UserIT {
   }
 
   @Test
+  @WithMockUser(username = "admin", authorities = {"ADMIN"})
   void addForm() throws Exception {
 
     MvcResult mvcResult = this.mockMvc.perform(get("/user/add")
-            .with(user("admin").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(200))
@@ -173,9 +173,10 @@ public class UserIT {
   }
 
   @Test
+  @WithMockUser(username = "admin", authorities = {"ADMIN"})
   void getUserList() throws Exception {
 
-    MvcResult mvcResult = this.mockMvc.perform(get("/user/list").with(user("Geff").roles("ADMIN"))
+    MvcResult mvcResult = this.mockMvc.perform(get("/user/list")
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(200))
@@ -188,6 +189,7 @@ public class UserIT {
   }
 
   @Test
+  @WithMockUser(username = "admin", authorities = {"ADMIN"})
   void userUpdate() throws Exception {
     User admine = userService.findByUsername("admin");
     admine.setFullname("ImAdmin");
@@ -195,7 +197,6 @@ public class UserIT {
     MvcResult result = this.mockMvc.perform(post("/user/update/1")
             .flashAttr("user", admine)
             .content(objectMapper.writeValueAsString(admine))
-            .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(302))
@@ -214,6 +215,7 @@ public class UserIT {
   }
 
   @Test
+  @WithMockUser(username = "admin", authorities = {"ADMIN"})
   void userUpdateFail() throws Exception {
     User admine = userService.findByUsername("admin");
     admine.setPassword("ImAdmin");
@@ -221,7 +223,6 @@ public class UserIT {
     MvcResult result = this.mockMvc.perform(post("/user/update/1")
             .flashAttr("user", admine)
             .content(objectMapper.writeValueAsString(admine))
-            .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(302))
@@ -240,6 +241,7 @@ public class UserIT {
 
 
   @Test
+  @WithMockUser(username = "admin", authorities = {"ADMIN"})
   void deleteUser() throws Exception {
     User userTest = new User();
     userTest.setPassword("1@Pythwd");
@@ -252,7 +254,6 @@ public class UserIT {
 
 
     MvcResult result = this.mockMvc.perform(get("/user/delete/" + id)
-            .with(user("Geff").roles("ADMIN"))
             .with(csrf())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().is(302))
